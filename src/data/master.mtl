@@ -1,0 +1,6 @@
+newmtl viridis
+Ka 0 0 0
+Kd 3 3 3
+Ks 1 1 1
+d 1
+map_Kd viridis.png

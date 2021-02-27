@@ -1,0 +1,26 @@
+.paging-bar{
+  display: flex;
+  justify-content: space-between;
+
+  .paging-bar__pagination-button {
+    margin-left: 8px
+  }
+
+  .paging-bar__other-page-button {
+    margin-left: 8px;
+    background-color: white;
+    color: black;
+  }
+
+  .paging-bar__current-page-button {
+    margin-left: 8px;
+    background-color: black;
+    color: white;
+  }
+
+  .paging-bar__filler {
+    display: inline-block;
+    margin-left: 8px;
+  }
+
+}

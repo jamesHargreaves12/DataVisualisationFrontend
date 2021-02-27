@@ -1,0 +1,12 @@
+.object-rendering-group-cell {
+  background-color: black;
+  margin: 8px;
+  padding: 8px;
+  border-radius: 5px;
+
+  .object-rendering-group-cell__title{
+    font-weight: bold;
+    color: white;
+    margin-bottom: 8px;
+  }
+}

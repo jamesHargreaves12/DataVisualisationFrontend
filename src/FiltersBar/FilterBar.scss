@@ -1,0 +1,32 @@
+.object-filter-bar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+
+  .object-filter-bar__search-section {
+    background-color: white;
+    margin: 8px;
+    padding: 8px;
+    border-radius: 5px;
+  }
+  .object-filter-bar__search-section-input {
+    width: 250px;
+  }
+
+  .object-filter-bar__filter{
+    margin: 8px;
+    border-radius: 5px;
+    background-color: white;
+  }
+
+  .object-filter-bar__filter-chip {
+    margin-left: 4px;
+    margin-right: 4px;
+    background-color: gray;
+  }
+  .object-filter-bar__filter-chip-group {
+    min-width: 200px;
+  }
+
+}
