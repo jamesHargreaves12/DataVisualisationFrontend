@@ -1,12 +1,13 @@
+@import 'src/Colors.scss';
+
 .object-rendering-group-cell {
-  background-color: black;
-  margin: 8px;
-  padding: 8px;
+  background-color: $primary-5;
   border-radius: 5px;
 
   .object-rendering-group-cell__title{
-    font-weight: bold;
-    color: white;
-    margin-bottom: 8px;
+    color: black;
+  }
+  .object-rendering-group-cell__content{
+    background-color: $primary-3;
   }
 }

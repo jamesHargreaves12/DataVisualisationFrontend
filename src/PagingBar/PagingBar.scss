@@ -1,21 +1,26 @@
+@import 'src/Colors.scss';
+
 .paging-bar{
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  padding: 8px;
 
   .paging-bar__pagination-button {
-    margin-left: 8px
+    margin-left: 8px;
+    background-color: $primary-2;
+    color: black;
   }
 
   .paging-bar__other-page-button {
     margin-left: 8px;
-    background-color: white;
+    background-color: $primary-2;
     color: black;
   }
 
   .paging-bar__current-page-button {
     margin-left: 8px;
-    background-color: black;
-    color: white;
+    background-color: $primary-4;
+    color: black;
   }
 
   .paging-bar__filler {

@@ -2,11 +2,11 @@ var path = require("path");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
-module.exports = {
+const baseConfig = {};
+
+const mainConfig = {
   mode: "development",
-  entry: "./src/index.tsx",
   plugins: [
-    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: "Application name",
       template: "./src/index.html",
@@ -15,7 +15,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /\.(tsx|ts)$/,
         use: "ts-loader",
         exclude: /node_modules/,
       },
@@ -52,10 +52,36 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js"],
+    extensions: [".ts", ".tsx", ".js"],
   },
+  name: "main",
+  entry: "./src/index.tsx",
   output: {
     path: path.resolve(__dirname, "./dist"),
-    filename: "index_bundle.js",
+    filename: "main.js",
   },
 };
+
+export const offscreenConfig = {
+  name: "offscreen",
+  entry: "./src/OffScreenCanvas/OffScreenCanvas.worker.ts",
+  output: {
+    path: path.resolve(__dirname, "./dist/offscreen"),
+    filename: "offscreen.js",
+  },
+  mode: "development",
+  module: {
+    rules: [
+      {
+        test: /\.(tsx|ts)$/,
+        use: "ts-loader",
+        exclude: /node_modules/,
+      },
+    ],
+  },
+  resolve: {
+    extensions: [".ts", ".tsx", ".js"],
+  },
+};
+
+module.exports = [mainConfig, offscreenConfig];

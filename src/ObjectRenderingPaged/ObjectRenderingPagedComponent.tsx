@@ -1,67 +1,121 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ObjectRenderingCell from "../ObjectRenderingCell";
 import {
   filenameToDetails,
   Gender,
   getFilteredFiles,
+  MATERIAL_FILEPATHS,
   OBJ_FILENAMES,
 } from "../ObjFileLoad";
-import { batchArray, getDebouncedPrint } from "../util";
-import Button from "@material-ui/core/Button";
+import { batchArray, PAGE_LAYOUT_CONFIG, useWindowSize } from "../util";
 import "./ObjectRenderingPagedComponent.scss";
-import * as THREE from "three";
-import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader";
-import MaterialCreator = MTLLoader.MaterialCreator;
-import { useRendering } from "./renderHelper";
+import {
+  sendChangeMaterial,
+  sendRemoveAllScenes,
+  sendSetRotate,
+  workerNotifications,
+} from "../OffscreenCanvasMiddleware";
 import { CellStatus } from "../ObjectRenderingCell/ObjectRenderingCellComponent";
 import FilterBar from "../FiltersBar/FilterBar";
 import PagingBar from "../PagingBar";
-
-const useMaterial = (materialPath: string) => {
-  const [materialCreator, setMaterialCreator] = useState<MaterialCreator>();
-  useEffect(() => {
-    const mtlLoader = new MTLLoader();
-    mtlLoader.setMaterialOptions({ side: THREE.DoubleSide });
-    mtlLoader.load(materialPath, (mtl) => {
-      mtl.preload();
-      setMaterialCreator(mtl);
-    });
-  }, [materialPath]);
-  return materialCreator;
-};
+import RightNav from "../RightNav/RightNav";
 
 const useCellStatus = () => {
   const [cellStatusTracker, setCellStatusTracker] = useState<
-    Record<number, CellStatus>
+    Record<string, CellStatus>
   >({});
+  const updateCellStatus = (id: string, value: CellStatus) =>
+    setCellStatusTracker((current) => ({ ...current, [id]: value }));
+
+  useEffect(() => {
+    const subscriptionId = "useCellStatus";
+    workerNotifications.subscribe(
+      "canvasRendered",
+      subscriptionId,
+      ({ canvasId }: { canvasId: string }) => {
+        updateCellStatus(canvasId, CellStatus.Loaded);
+      }
+    );
+    return () =>
+      workerNotifications.unsubscribe("canvasRendered", subscriptionId);
+  }, []);
+
   const loadedCount = Object.values(cellStatusTracker).filter(
     (x) => x === CellStatus.Loaded
   ).length;
-  const updateCellStatus = (cellNumber: number, value: CellStatus) =>
-    setCellStatusTracker((current) => ({ ...current, [cellNumber]: value }));
   return { loadedCount, updateCellStatus, cellStatusTracker };
 };
 
-const PAGE_CONFIG = {
-  widthCell: 350,
-  heightCell: 350,
-  pageSize: 8,
-  rowSize: 4,
-  materialPath: "src/data/master.mtl",
+const useObjectCellLayout = () => {
+  const windowSize = useWindowSize();
+  if (!windowSize.width) {
+    return {
+      cellsPerRow: 1,
+      horizontalPadding: 0,
+      verticalPadding: 0,
+      rowCount: 1,
+    };
+  }
+  if (!windowSize.height) {
+    return {
+      cellsPerRow: 1,
+      horizontalPadding: 0,
+      verticalPadding: 0,
+      rowCount: 1,
+    };
+  }
+  const {
+    widthCell,
+    heightCell,
+    cellMarginSize,
+    cellPaddingSize,
+    rightNavWidth,
+    topNavBarHeight,
+    filterBarHeight,
+    pagingBarHeight,
+    cellTitleHeight,
+  } = PAGE_LAYOUT_CONFIG;
+  const totalCellWidth = 2 * cellMarginSize + 2 * cellPaddingSize + widthCell;
+  const totalPageWidth = windowSize.width - rightNavWidth;
+  const cellsPerRow = Math.floor(totalPageWidth / totalCellWidth);
+  const horizontalPadding = (totalPageWidth % totalCellWidth) / 2;
+
+  const totalCellHeight =
+    2 * cellMarginSize + 2 * cellPaddingSize + heightCell + cellTitleHeight;
+  const totalPageHeight =
+    windowSize.height - topNavBarHeight - filterBarHeight - pagingBarHeight;
+  const rowCount = Math.floor(totalPageHeight / totalCellHeight);
+  const verticalPadding = (totalPageHeight % totalCellHeight) / 2;
+  return {
+    cellsPerRow,
+    horizontalPadding,
+    rowCount,
+    verticalPadding,
+  };
+};
+
+const useRotating = () => {
+  const [isRotating, setIsRotating] = useState(false);
+  const setRotating = (val: boolean) => {
+    sendSetRotate(val);
+    setIsRotating(val);
+  };
+  return { isRotating, setRotating };
 };
 
 export default function ObjectRenderingGroup() {
   const {
-    widthCell,
-    heightCell,
-    pageSize,
-    rowSize,
-    materialPath,
-  } = PAGE_CONFIG;
+    cellsPerRow,
+    horizontalPadding,
+    rowCount,
+    verticalPadding,
+  } = useObjectCellLayout();
+  const { isRotating, setRotating } = useRotating();
   const [currentPage, setCurrentPage] = useState(0);
   const [searchStatus, setSearchStatus] = useState("");
   const [selectedGenders, setSelectedGenders] = useState<Gender[]>([]);
   const [selectedAgeRanges, setSelectedAgeRanges] = useState<string[]>([]);
+  const [currentTheme, setCurrentTheme] = useState(MATERIAL_FILEPATHS[0]);
 
   const { loadedCount, updateCellStatus, cellStatusTracker } = useCellStatus();
   const unfilteredFileDetails = OBJ_FILENAMES.map((f) => filenameToDetails(f));
@@ -71,71 +125,73 @@ export default function ObjectRenderingGroup() {
     selectedGenders,
     selectedAgeRanges
   );
-  filteredFiles.sort((a, b) => a.title.localeCompare(b.title));
-  const pagedFiles = batchArray(filteredFiles, pageSize);
-  const currentPageFiles = pagedFiles[currentPage];
-  const groupedFileNames = batchArray(currentPageFiles, 4);
-  const debouncedPrint = getDebouncedPrint();
-  const {
-    addScene,
-    removeScene,
-    renderer,
-    removeAllScenes,
-    toggleShouldRotate,
-    stopRotationIfOccuring,
-  } = useRendering(widthCell, heightCell);
-  const material = useMaterial(materialPath);
+  const changeTheme = (fp: string) => {
+    setCurrentTheme(fp);
+    sendChangeMaterial(fp);
+  };
 
+  filteredFiles.sort((a, b) => a.title.localeCompare(b.title));
+  function filterAndGoToFirstPage<T>(filter: (x: T) => void) {
+    return (val: T) => {
+      setCurrentPage(0);
+      filter(val);
+    };
+  }
+  const pagedFiles = batchArray(filteredFiles, cellsPerRow * rowCount);
+  const currentPageFiles = pagedFiles[currentPage];
+  const groupedFileNames = batchArray(currentPageFiles, cellsPerRow);
+  const allCellsLoaded = loadedCount === currentPageFiles.length;
   return (
     <div className="object-rendering-group">
-      <FilterBar
-        selectedGenders={selectedGenders}
-        setSearchStatus={setSearchStatus}
-        setSelectedGenders={setSelectedGenders}
-        selectedAgeRanges={selectedAgeRanges}
-        setSelectedAgeRanges={setSelectedAgeRanges}
-        unfilteredFileDetails={unfilteredFileDetails}
-      />
-      {groupedFileNames.map((group, indexGroup) => (
-        <div className="object-rendering-group__row" key={indexGroup}>
-          {group.map((fileDetails, index) => {
-            const cellNumber = indexGroup * rowSize + index;
-            return (
-              material && (
+      <div
+        className="object-rendering-group__main-content"
+        style={{ paddingLeft: horizontalPadding, paddingTop: verticalPadding }}
+      >
+        <FilterBar
+          selectedGenders={selectedGenders}
+          unfilteredFileDetails={unfilteredFileDetails}
+          selectedAgeRanges={selectedAgeRanges}
+          setSearchStatus={filterAndGoToFirstPage(setSearchStatus)}
+          setSelectedGenders={filterAndGoToFirstPage(setSelectedGenders)}
+          setSelectedAgeRanges={filterAndGoToFirstPage(setSelectedAgeRanges)}
+        />
+        {groupedFileNames.map((group, indexGroup) => (
+          <div className="object-rendering-group__row" key={indexGroup}>
+            {group.map((fileDetails, index) => {
+              const cellNumber = indexGroup * cellsPerRow + index;
+              const canvasId = `canvas-${cellNumber}`;
+              return (
                 <ObjectRenderingCell
-                  canvasHeight={heightCell}
-                  canvasWidth={widthCell}
-                  cellNumber={cellNumber}
+                  canvasId={canvasId}
                   objFileDetails={fileDetails}
-                  key={cellNumber}
-                  addScene={addScene}
-                  renderer={renderer}
-                  material={material}
-                  removeScene={removeScene}
-                  // shouldRotate={shouldRotate}
-                  cellStatus={cellStatusTracker[cellNumber]}
-                  reportCellStatusChange={(x) =>
-                    updateCellStatus(cellNumber, x)
-                  }
+                  key={canvasId}
+                  cellStatus={cellStatusTracker[canvasId]}
+                  reportCellStatusChange={(x) => updateCellStatus(canvasId, x)}
+                  currentTheme={currentTheme}
                 />
-              )
-            );
-          })}
-        </div>
-      ))}
+              );
+            })}
+          </div>
+        ))}
 
-      <PagingBar
-        setPage={(page: number) => {
-          stopRotationIfOccuring();
-          removeAllScenes();
-          setCurrentPage(page);
-        }}
-        onRotate={toggleShouldRotate}
-        allLoaded={loadedCount === currentPageFiles.length}
-        currentPage={currentPage}
-        // totalPages={pagedFiles.length}
-        totalPages={9}
-      />
+        <PagingBar
+          setPage={(page: number) => {
+            setRotating(false);
+            sendRemoveAllScenes();
+            setCurrentPage(page);
+          }}
+          currentPage={currentPage}
+          totalPages={pagedFiles.length}
+        />
+      </div>
+      <div className={"object-rendering-group__right-nav"}>
+        <RightNav
+          rotateToggle={() => setRotating(!isRotating)}
+          allCellsLoaded={allCellsLoaded}
+          currentTheme={currentTheme}
+          changeTheme={changeTheme}
+        />
+      </div>
     </div>
   );
 }

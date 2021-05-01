@@ -1,9 +1,10 @@
+@import "src/Colors.scss";
+
 .object-rendering-group {
-    margin-top: 20px;
-    width: 1600px;
-    display: inline-block;
-    padding-right: 10px;
+    display: flex;
     padding-left: 10px;
+    padding-top: 60px; // account for top nav bar
+    width: 100%;
 
     .object-rendering-group__row {
         margin-bottom: 16px;
@@ -12,10 +13,18 @@
         justify-content: space-between;
     }
 
+    .object-rendering-group__right-nav {
+        background: $primary-4;
+        right: 0;
+        position: fixed;
+        height: 100%;
+        width: 300px;
+    }
+
     canvas {
         width: 100%;
         height: 100%;
         display: block;
-        background-color: gray;
+        background-color: $primary-3;
     }
 }

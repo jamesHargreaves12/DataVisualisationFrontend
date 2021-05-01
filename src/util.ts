@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const batchArray = <T>(arr: T[], groupSize: number, fillValue?: T) => {
   const batched = arr
@@ -36,3 +36,45 @@ export const getDebouncedPrint = (timeout = 200) => {
 };
 
 export const XOR = (a: boolean, b: boolean) => (a || b) && !(a && b);
+
+export const PAGE_LAYOUT_CONFIG = {
+  widthCell: 350,
+  heightCell: 350,
+  cellMarginSize: 8,
+  cellPaddingSize: 8,
+  rightNavWidth: 300,
+  topNavBarHeight: 60,
+  filterBarHeight: 60,
+  pagingBarHeight: 60,
+  cellTitleHeight: 25,
+};
+
+export const useWindowSize = () => {
+  const [windowSize, setWindowSize] = useState<{
+    width: number | undefined;
+    height: number | undefined;
+  }>({
+    width: undefined,
+    height: undefined,
+  });
+
+  useEffect(() => {
+    // Handler to call on window resize
+    function handleResize() {
+      // Set window width/height to state
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    // Call handler right away so state gets updated with initial window size
+    handleResize();
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return windowSize;
+};

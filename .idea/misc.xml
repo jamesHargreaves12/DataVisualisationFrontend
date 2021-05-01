@@ -3,4 +3,7 @@
   <component name="PreferredVcsStorage">
     <preferredVcsName>ApexVCS</preferredVcsName>
   </component>
+  <component name="ProjectPlainTextFileTypeManager">
+    <file url="file://$PROJECT_DIR$/src/data/icons/snail.svg" />
+  </component>
 </project>

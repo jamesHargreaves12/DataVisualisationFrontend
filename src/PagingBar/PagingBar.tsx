@@ -1,6 +1,9 @@
 import Button from "@material-ui/core/Button";
 import React from "react";
 import "./PagingBar.scss";
+import { sendChangeMaterial } from "../OffscreenCanvasMiddleware";
+import { PAGE_LAYOUT_CONFIG } from "../util";
+import { ICONS } from "../ObjFileLoad";
 
 type PaginationButtonProps = {
   pageIndex: number;
@@ -13,11 +16,12 @@ function PaginationButton({
   setPage,
 }: PaginationButtonProps) {
   return isCurrentPage ? (
-    <Button className={"paging-bar__current-page-button"}>
+    <Button key={pageIndex + 1} className={"paging-bar__current-page-button"}>
       {pageIndex + 1}
     </Button>
   ) : (
     <Button
+      key={pageIndex + 1}
       className={"paging-bar__other-page-button"}
       onClick={() => setPage(pageIndex)}
     >
@@ -31,7 +35,11 @@ const getPagingIndicator = (
   currentPage: number,
   setPage: (page: number) => void
 ) => {
-  const filler = <div className="paging-bar__filler">...</div>;
+  const filler = (key: number) => (
+    <div key={key} className="paging-bar__filler">
+      ...
+    </div>
+  );
   const getButton = (pageIndex: number) => (
     <PaginationButton
       pageIndex={pageIndex}
@@ -45,10 +53,10 @@ const getPagingIndicator = (
   if ([0, 1, 2].includes(currentPage)) {
     return [0, 1, 2, 3]
       .map((i) => getButton(i))
-      .concat([filler, getButton(totalPages - 1)]);
+      .concat([filler(-1), getButton(totalPages - 1)]);
   }
   if ([totalPages - 1, totalPages - 2, totalPages - 3].includes(currentPage))
-    return [getButton(1), filler].concat(
+    return [getButton(1), filler(-1)].concat(
       [
         totalPages - 4,
         totalPages - 3,
@@ -56,53 +64,46 @@ const getPagingIndicator = (
         totalPages - 1,
       ].map((i) => getButton(i))
     );
-  return [getButton(0), filler]
+  return [getButton(0), filler(-1)]
     .concat(
       [currentPage - 1, currentPage, currentPage + 1].map((i) => getButton(i))
     )
-    .concat([filler, getButton(totalPages - 1)]);
+    .concat([filler(-2), getButton(totalPages - 1)]);
 };
 
 type PagingBarProps = {
   setPage: (page: number) => void;
-  onRotate: () => void;
   totalPages: number;
   currentPage: number;
-  allLoaded: boolean;
 };
 
 export default function PagingBar({
   setPage,
-  onRotate,
   totalPages,
   currentPage,
-  allLoaded,
 }: PagingBarProps) {
   return (
-    <div className={"paging-bar"}>
-      <Button onClick={onRotate} disabled={!allLoaded} variant="contained">
-        Rotate
+    <div
+      className="paging-bar"
+      style={{ height: PAGE_LAYOUT_CONFIG.pagingBarHeight }}
+    >
+      <Button
+        onClick={() => setPage(currentPage - 1)}
+        disabled={currentPage == 0}
+        className={"paging-bar__pagination-button"}
+        variant="contained"
+      >
+        <img src={ICONS.prevArrow} width="15px" />
       </Button>
-      <div style={{ float: "right" }}>
-        <Button
-          onClick={() => setPage(currentPage - 1)}
-          disabled={currentPage == 0}
-          // TODO classname
-          className={"paging-bar"}
-          variant="contained"
-        >
-          Prev
-        </Button>
-        {getPagingIndicator(totalPages, currentPage, setPage)}
-        <Button
-          onClick={() => setPage(currentPage + 1)}
-          disabled={currentPage == totalPages - 1}
-          className={"paging-bar__pagination-button"}
-          variant="contained"
-        >
-          Next
-        </Button>
-      </div>
+      {getPagingIndicator(totalPages, currentPage, setPage)}
+      <Button
+        onClick={() => setPage(currentPage + 1)}
+        disabled={currentPage == totalPages - 1}
+        className={"paging-bar__pagination-button"}
+        variant="contained"
+      >
+        <img src={ICONS.nextArrow} width="15px" />
+      </Button>
     </div>
   );
 }

@@ -4,6 +4,7 @@ import { FileDetails, Gender } from "../ObjFileLoad";
 import Input from "@material-ui/core/Input";
 import React from "react";
 import "./FilterBar.scss";
+import { PAGE_LAYOUT_CONFIG } from "../util";
 
 export type FilterBarProps = {
   selectedGenders: Gender[];
@@ -32,7 +33,10 @@ export default function FilterBar(props: FilterBarProps) {
   possibleAgeRanges.sort();
 
   return (
-    <div className="object-filter-bar">
+    <div
+      className="object-filter-bar"
+      style={{ height: PAGE_LAYOUT_CONFIG.filterBarHeight }}
+    >
       <div className="object-filter-bar__search-section">
         <InputBase
           placeholder="Filter by name"

@@ -1,0 +1,17 @@
+@import "src/Colors.scss";
+
+.loading-indicator {
+  display: inline-block;
+  border: 8px solid $primary-2;
+  background-color: $primary-3;
+  border-top: 8px solid $primary-1;
+  border-radius: 50%;
+  animation: spin 2s linear infinite;
+  width: 30%;
+  height: 30%;
+  margin-top: 35%;
+}
+@keyframes spin {
+   0% { transform: rotate(0deg); }
+   100% { transform: rotate(360deg); }
+}

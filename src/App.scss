@@ -1,0 +1,18 @@
+@import "src/Colors.scss";
+
+.App {
+  text-align: center;
+  background-color: $primary-3;
+  min-height: 100%;
+}
+
+.nav-bar {
+  width: 100%;
+  background-color: $primary-1;
+  color: white;
+  height: 60px;
+  font-size: 32px;
+  text-align: left;
+  padding: 8px;
+  position: fixed;
+}

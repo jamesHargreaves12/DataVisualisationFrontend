@@ -1,0 +1,13 @@
+.right-nav{
+  display: flex;
+  flex-direction: column;
+
+  .right-nav__button {
+    margin: 10px;
+  }
+
+  .right-nav__slider {
+    width: 90%;
+    margin: auto;
+  }
+}
