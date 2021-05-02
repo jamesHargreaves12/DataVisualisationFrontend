@@ -1586,7 +1586,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"d631921f0ff13e05f26e73bfe0a36c00.jpg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/Atlas.jpg?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"src/data/Atlas.jpg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/Atlas.jpg?");
 
 /***/ }),
 
@@ -1597,7 +1597,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"f9c48481143812e69d32a4c39ddda7b2.jpg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/By_Design.jpg?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"src/data/By Design.jpg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/By_Design.jpg?");
 
 /***/ }),
 
@@ -1608,7 +1608,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"de0baaaf3a36146e5dbbdbac28235ce7.jpg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/Cool_Sky.jpg?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"src/data/Cool Sky.jpg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/Cool_Sky.jpg?");
 
 /***/ }),
 
@@ -1619,7 +1619,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"a26aa7210522123f4b928d14a3fae92d.jpg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/Evening_Sunshine.jpg?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"src/data/Evening Sunshine.jpg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/Evening_Sunshine.jpg?");
 
 /***/ }),
 
@@ -1630,7 +1630,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"9ba29742971af71040f790e273248f0f.jpg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/Flare.jpg?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"src/data/Flare.jpg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/Flare.jpg?");
 
 /***/ }),
 
@@ -1641,7 +1641,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"03e8ed153ae8eda3c66bda6a4da016d2.jpg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/Kye_Meh.jpg?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"src/data/Kye Meh.jpg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/Kye_Meh.jpg?");
 
 /***/ }),
 
@@ -1652,7 +1652,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"ac400ebbbe73eeb761ded84a3133211b.jpg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/Kyoo_Pal.jpg?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"src/data/Kyoo Pal.jpg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/Kyoo_Pal.jpg?");
 
 /***/ }),
 
@@ -1663,7 +1663,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"c0d31a3787851cbc34ae476b99d94a03.jpg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/Kyoo_Tah.jpg?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"src/data/Kyoo Tah.jpg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/Kyoo_Tah.jpg?");
 
 /***/ }),
 
@@ -1674,7 +1674,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"d338036aa7183a711bc1aa0ca06863c2.jpg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/Magic.jpg?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"src/data/Magic.jpg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/Magic.jpg?");
 
 /***/ }),
 
@@ -1685,7 +1685,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"cded7c969908f2da4f7437a6fea5ec2f.jpg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/Metapolis.jpg?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"src/data/Metapolis.jpg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/Metapolis.jpg?");
 
 /***/ }),
 
@@ -1696,7 +1696,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"36c6621d5bc353a65689971a59dde7f4.jpg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/Rastafari.jpg?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"src/data/Rastafari.jpg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/Rastafari.jpg?");
 
 /***/ }),
 
@@ -1707,7 +1707,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"581e4d195619aca9d41a57c7e0ce4e87.jpg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/Red_Sunset.jpg?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"src/data/Red Sunset.jpg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/Red_Sunset.jpg?");
 
 /***/ }),
 
@@ -1718,7 +1718,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"1f88b28d00da7c9a80f3e72570ff95f4.jpg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/Wedding_Day_Blues.jpg?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"src/data/Wedding Day Blues.jpg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/Wedding_Day_Blues.jpg?");
 
 /***/ }),
 
@@ -1729,7 +1729,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"1aaa48af504e0104b332bef343474aac.jpg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/WireTap.jpg?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"src/data/WireTap.jpg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/WireTap.jpg?");
 
 /***/ }),
 
@@ -1740,7 +1740,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"4b108eca05fa4787ac4b96a0f75b6518.svg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/icons/bigCircle.svg?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"src/data/icons/bigCircle.svg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/icons/bigCircle.svg?");
 
 /***/ }),
 
@@ -1751,7 +1751,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"0aec0d03cf7d00aafe78adccf55c74d3.svg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/icons/cached_black_24dp.svg?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"src/data/icons/cached_black_24dp.svg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/icons/cached_black_24dp.svg?");
 
 /***/ }),
 
@@ -1762,7 +1762,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"551fd6615391dd9acd7029ac61b40269.svg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/icons/cheetah.svg?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"src/data/icons/cheetah.svg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/icons/cheetah.svg?");
 
 /***/ }),
 
@@ -1773,7 +1773,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"61b3150115754eeb4bbecf51a02498ef.svg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/icons/hare.svg?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"src/data/icons/hare.svg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/icons/hare.svg?");
 
 /***/ }),
 
@@ -1784,7 +1784,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"45d819583b5e789d21815d0184056b3d.svg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/icons/largeAngle.svg?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"src/data/icons/largeAngle.svg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/icons/largeAngle.svg?");
 
 /***/ }),
 
@@ -1795,7 +1795,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"82c3cb445b3e271e7ccb775481d85a95.svg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/icons/nextArrow.svg?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"src/data/icons/nextArrow.svg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/icons/nextArrow.svg?");
 
 /***/ }),
 
@@ -1806,7 +1806,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"e90dd167eb21cdbe7fbfcde33c81acfd.svg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/icons/prevArrow.svg?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"src/data/icons/prevArrow.svg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/icons/prevArrow.svg?");
 
 /***/ }),
 
@@ -1817,7 +1817,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"9944d11aad89f97c7cf96115db1014d7.svg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/icons/smallAngle.svg?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"src/data/icons/smallAngle.svg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/icons/smallAngle.svg?");
 
 /***/ }),
 
@@ -1828,7 +1828,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"0d6e46369c423a13800089b9cd95b372.svg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/icons/smallCircle.svg?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"src/data/icons/smallCircle.svg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/icons/smallCircle.svg?");
 
 /***/ }),
 
@@ -1839,7 +1839,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"38aa7f7ec9bb6e2eb9a3646692ef8858.svg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/icons/snail.svg?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"src/data/icons/snail.svg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/icons/snail.svg?");
 
 /***/ }),
 
@@ -1850,7 +1850,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"59b6d8a3683e563e99e86e3e79e0d7c7.svg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/icons/snail_silhouette.svg?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"src/data/icons/snail_silhouette.svg\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/icons/snail_silhouette.svg?");
 
 /***/ }),
 
@@ -1861,7 +1861,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ 
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"21be701bcb0a76ca4a19d280c8b6f342.png\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/viridis.png?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"src/data/viridis.png\");\n\n//# sourceURL=webpack://data-visualisation/./src/data/viridis.png?");
 
 /***/ }),
 
