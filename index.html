@@ -1,14 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>404 page not found - this page will be used as a hack to get SPA working - see https://github.com/isaacs/github/issues/408</title>
-</head>
-<body>
-<script>
-    sessionStorage.redirect = location.href;
-</script>
-<meta http-equiv="refresh" content="0;URL='/DataVisualisationFrontend'">
+<html>
+    <body>
+<!-- This combined with 404.html is a hack to get Single page application working  see https://www.smashingmagazine.com/2016/08/sghpa-single-page-app-hack-github-pages/-->
+    <script>
+        (function(){
+            var redirect = sessionStorage.redirect;
+            delete sessionStorage.redirect;
+            if (redirect && redirect != location.href) {
+                history.replaceState(null, null, redirect);
+            }
+        })();
+    </script>
 
-<script src="main.js"></script></body>
+    <div id="root"></div>
+    <script src="main.js"></script></body>
 </html>
