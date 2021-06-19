@@ -1,5 +1,16 @@
 <html>
     <body>
-        <div id="root"></div>
+<!-- This combined with 404.html is a hack to get Single page application working  see https://www.smashingmagazine.com/2016/08/sghpa-single-page-app-hack-github-pages/-->
+    <script>
+        (function(){
+            var redirect = sessionStorage.redirect;
+            delete sessionStorage.redirect;
+            if (redirect && redirect != location.href) {
+                history.replaceState(null, null, redirect);
+            }
+        })();
+    </script>
+
+    <div id="root"></div>
     </body>
 </html>

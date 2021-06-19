@@ -57,8 +57,9 @@ export const removeScene = ({
   if (currentlyLoadingFilepaths.has(objFilepath))
     cancelledLoadingFilepaths.add(objFilepath);
 
-  const { scene, ctx, canvasHeight, canvasWidth } = getSceneIfExists(id);
-  if (scene) {
+  const sceneInfo = getSceneIfExists(id);
+  if (sceneInfo?.scene) {
+    const { scene, ctx, canvasHeight, canvasWidth } = getSceneIfExists(id);
     cleanUpScene(scene);
     // Color them grey - clears the current value
     ctx.fillStyle = "grey";

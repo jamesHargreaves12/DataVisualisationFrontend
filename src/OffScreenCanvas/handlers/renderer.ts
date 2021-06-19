@@ -30,7 +30,6 @@ export const setupRenderer = ({
   canvas,
 }: OffscreenEventArgs["setupRenderer"]) => {
   const renderer = new THREE.WebGLRenderer({ canvas });
-  console.log("RENDERER", renderer);
   const debouncedPrint = getDebouncedPrint(500);
 
   function renderFunction(time: number) {
@@ -77,10 +76,10 @@ export const setupRenderer = ({
       const rendererCanvas = renderer.domElement;
 
       if (
-        rendererCanvas.width < canvasWidth ||
-        rendererCanvas.height < canvasHeight
+        rendererCanvas.width !== canvasWidth ||
+        rendererCanvas.height !== canvasHeight
       ) {
-        renderer.setSize(canvasWidth + 1, canvasHeight + 1, false);
+        renderer.setSize(canvasWidth, canvasHeight, false);
       }
 
       // make sure the canvas for this area is the same size as the area
@@ -88,14 +87,12 @@ export const setupRenderer = ({
         ctx.canvas.width !== canvasWidth ||
         ctx.canvas.height !== canvasHeight
       ) {
-        console.log("set ctx size", canvasWidth, canvasHeight);
         ctx.canvas.width = canvasWidth;
         ctx.canvas.height = canvasHeight;
       }
 
       // copy the rendered scene to this element's canvas
       ctx.globalCompositeOperation = "copy";
-      // debouncedPrint(ctx);
       ctx.drawImage(
         rendererCanvas,
         0,
@@ -125,6 +122,11 @@ export const getSceneIfExists = (id: string) => {
 export const removeSceneFromRendering = (id: string) => {
   delete sceneElements[id];
   delete prevRenderTime[id];
+};
+
+export const refreshScene = (id: string, sceneElement: SceneElement) => {
+  removeSceneFromRendering(id);
+  registerSceneForRendering(id, sceneElement);
 };
 
 export const getScenesAndIds = () => {

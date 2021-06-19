@@ -4,10 +4,11 @@ import {
   NotifyOnScreenData,
 } from "../OffScreenCanvas/EventTypes";
 import { TopicSubscriptionManager } from "./TopicSubscriptionManager";
+import { getUrl } from "../FileLoader";
 
 // This is currently very brittle. you should take alot of care before changing the following line. The name of the worker has to match the path in webpack.config.js
 // This should almost certainly be improved at some point
-const worker = new Worker("offscreen/offscreen.js");
+const worker = new Worker(getUrl("/offscreen.js"));
 function sendMessage(data: MessageToWorker, transfer: Transferable[] = []) {
   worker.postMessage(data, transfer);
 }
@@ -68,6 +69,12 @@ export function sendSetZAxis(angle: number) {
     angle,
   });
 }
+export function sendSetColourPower(power: number) {
+  sendMessage({
+    type: "changeColourPower",
+    power,
+  });
+}
 
 export function sendSetCameraRadius(radius: number) {
   sendMessage({
@@ -99,6 +106,5 @@ export function sendChangeMaterial(materialLocation: string) {
 
 export const workerNotifications = new TopicSubscriptionManager<NotifyOnScreenData>();
 worker.onmessage = function ({ data }: { data: MessageFromWorker }) {
-  console.log(data);
   workerNotifications.pushMessage(data["type"], data);
 };

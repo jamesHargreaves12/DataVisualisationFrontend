@@ -6,13 +6,16 @@
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
     "@types/node": "^12.19.12",
+    "@types/pako": "^1.0.1",
     "@types/react": "^16.14.2",
     "@types/react-dom": "^16.9.10",
     "bootstrap": "^4.5.3",
+    "node-polyfill-webpack-plugin": "^1.1.0",
     "node-sass": "^5.0.0",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.3",
     "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "three": "^0.124.0",
     "typescript": "^4.1.3",
@@ -20,10 +23,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "webpack",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start:dev": "webpack serve"
+    "start:dev": "webpack serve --output-public-path=/",
+    "predeploy": "yarn build --output-public-path=/DataVisualisationFrontend/",
+    "deploy": "gh-pages -d dist"
   },
   "eslintConfig": {
     "extends": [
@@ -46,20 +51,32 @@
   "devDependencies": {
     "@testing-library/react": "^11.2.3",
     "@types/jest": "^26.0.20",
+    "@types/react-router-dom": "^5.1.7",
     "@webpack-cli/init": "^1.1.1",
     "babel-loader": "^8.2.2",
     "babel-preset-react-app": "^10.0.0",
+    "browserify-zlib": "^0.2.0",
+    "buffer": "^6.0.3",
     "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^8.1.1",
+    "cross-env": "^7.0.3",
     "css-loader": "^5.0.1",
     "file-loader": "^6.2.0",
+    "gh-pages": "^3.1.0",
     "html-webpack-plugin": "^4.5.1",
+    "pako": "^2.0.3",
     "prettier": "2.2.1",
+    "process": "^0.11.10",
     "sass": "^1.32.5",
     "sass-loader": "^10.1.1",
+    "style-loader": "^2.0.0",
     "ts-loader": "^8.0.14",
+    "url": "^0.11.0",
+    "util": "^0.12.3",
     "webpack": "^5.17.0",
     "webpack-cli": "^4.3.1",
-    "webpack-dev-server": "^3.11.1",
+    "webpack-dev-server": "^4.0.0-beta.2",
     "worker-loader": "^3.0.8"
-  }
+  },
+  "homepage": "https://jamesHargreaves12.github.io/DataVisualisationFrontend"
 }

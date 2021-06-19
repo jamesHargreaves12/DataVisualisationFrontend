@@ -13,10 +13,10 @@ import {
   MessageFromWorker,
 } from "./EventTypes";
 import { changeMaterial } from "./handlers/changeMaterial";
+import { changeColourPower } from "./handlers/changeColourPower";
 // well this is grim... but it is a known issue with ts
 //https://github.com/microsoft/TypeScript/issues/14877
 declare var self: DedicatedWorkerGlobalScope;
-
 const handlers: OffscreenEventHandlers = {
   setupRenderer,
   addNewScene,
@@ -27,6 +27,7 @@ const handlers: OffscreenEventHandlers = {
   setRotateSpeed,
   setZAxisAngle,
   setCameraRadius,
+  changeColourPower,
 };
 
 self.onmessage = function ({ data }: { data: MessageToWorker }) {
@@ -34,9 +35,8 @@ self.onmessage = function ({ data }: { data: MessageToWorker }) {
   handlers[data.type](data);
 };
 
-export default self;
-
 export const sendBackMessage = (data: MessageFromWorker) => {
-  console.log(self);
   self.postMessage(data);
 };
+
+export default self;

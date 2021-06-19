@@ -1,6 +1,6 @@
 import { Chip, InputBase, MenuItem, Select } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
-import { FileDetails, Gender } from "../ObjFileLoad";
+import { FileDetails, Gender } from "../FileLoader";
 import Input from "@material-ui/core/Input";
 import React from "react";
 import "./FilterBar.scss";
@@ -47,80 +47,84 @@ export default function FilterBar(props: FilterBarProps) {
         />
         <SearchIcon />
       </div>
-      <div className={"object-filter-bar__filter"}>
-        <Select
-          label={"Genders"}
-          multiple={true}
-          displayEmpty={true}
-          value={selectedGenders}
-          onChange={(e) => setSelectedGenders(e.target.value as Gender[])}
-          input={<Input />}
-          variant={"filled"}
-          renderValue={(value: unknown) => {
-            let genders = value as Gender[];
-            if (genders.length === 0)
+      {possibleGenders.length > 1 && (
+        <div className={"object-filter-bar__filter"}>
+          <Select
+            label={"Genders"}
+            multiple={true}
+            displayEmpty={true}
+            value={selectedGenders}
+            onChange={(e) => setSelectedGenders(e.target.value as Gender[])}
+            input={<Input />}
+            variant={"filled"}
+            renderValue={(value: unknown) => {
+              let genders = value as Gender[];
+              if (genders.length === 0)
+                return (
+                  <div className={"object-filter-bar__filter-chip-group"}>
+                    Gender
+                  </div>
+                );
               return (
                 <div className={"object-filter-bar__filter-chip-group"}>
-                  Gender
+                  {genders.map((g) => (
+                    <Chip
+                      key={g}
+                      label={g}
+                      className={"object-filter-bar__filter-chip"}
+                    />
+                  ))}
                 </div>
               );
-            return (
-              <div className={"object-filter-bar__filter-chip-group"}>
-                {genders.map((g) => (
-                  <Chip
-                    key={g}
-                    label={g}
-                    className={"object-filter-bar__filter-chip"}
-                  />
-                ))}
-              </div>
-            );
-          }}
-        >
-          {possibleGenders.map((name) => (
-            <MenuItem key={name} value={name}>
-              {name}
-            </MenuItem>
-          ))}
-        </Select>
-      </div>
-      <div className={"object-filter-bar__filter"}>
-        <Select
-          label={"Age Ranges"}
-          multiple={true}
-          displayEmpty={true}
-          value={selectedAgeRanges}
-          onChange={(e) => setSelectedAgeRanges(e.target.value as Gender[])}
-          input={<Input />}
-          variant={"filled"}
-          renderValue={(value: unknown) => {
-            let ageRange = value as string[];
-            if (ageRange.length === 0)
+            }}
+          >
+            {possibleGenders.map((name) => (
+              <MenuItem key={name} value={name}>
+                {name}
+              </MenuItem>
+            ))}
+          </Select>
+        </div>
+      )}
+      {possibleAgeRanges.length > 1 && (
+        <div className={"object-filter-bar__filter"}>
+          <Select
+            label={"Age Ranges"}
+            multiple={true}
+            displayEmpty={true}
+            value={selectedAgeRanges}
+            onChange={(e) => setSelectedAgeRanges(e.target.value as Gender[])}
+            input={<Input />}
+            variant={"filled"}
+            renderValue={(value: unknown) => {
+              let ageRange = value as string[];
+              if (ageRange.length === 0)
+                return (
+                  <div className={"object-filter-bar__filter-chip-group"}>
+                    Age Ranges
+                  </div>
+                );
               return (
                 <div className={"object-filter-bar__filter-chip-group"}>
-                  Age Ranges
+                  {ageRange.map((v) => (
+                    <Chip
+                      key={v}
+                      label={v}
+                      className={"object-filter-bar__filter-chip"}
+                    />
+                  ))}
                 </div>
               );
-            return (
-              <div className={"object-filter-bar__filter-chip-group"}>
-                {ageRange.map((v) => (
-                  <Chip
-                    key={v}
-                    label={v}
-                    className={"object-filter-bar__filter-chip"}
-                  />
-                ))}
-              </div>
-            );
-          }}
-        >
-          {possibleAgeRanges.map((name) => (
-            <MenuItem key={name} value={name}>
-              {name}
-            </MenuItem>
-          ))}
-        </Select>
-      </div>
+            }}
+          >
+            {possibleAgeRanges.map((name) => (
+              <MenuItem key={name} value={name}>
+                {name}
+              </MenuItem>
+            ))}
+          </Select>
+        </div>
+      )}
     </div>
   );
 }

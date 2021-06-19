@@ -11,5 +11,5 @@ export default function LoadingIndicator({
   width,
   height,
 }: LoadingIndicatorProps) {
-  return <div className="loading-indicator" />;
+  return <div style={{ width, height }} className="loading-indicator" />;
 }

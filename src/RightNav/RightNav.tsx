@@ -4,28 +4,37 @@ import {
   sendSetRotateSpeed,
   sendSetZAxis,
 } from "../OffscreenCanvasMiddleware";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./RightNav.scss";
-import { ICONS, MATERIAL_FILEPATHS } from "../ObjFileLoad";
+import { ICONS, MATERIAL_FILEPATHS } from "../FileLoader";
 import { MenuItem, Select, Slider } from "@material-ui/core";
 import Input from "@material-ui/core/Input";
 import IconedSlider from "./IconedSlider/IconedSlider";
-type RightNavProps = {
-  rotateToggle: () => void;
-  allCellsLoaded: boolean;
-  currentTheme: string;
-  changeTheme: (fp: string) => void;
-};
+import colours from "../CSSColours";
+import renderingSettingsContext, {
+  CanvasStatus,
+} from "../RenderingContext/RenderingContext";
 
-export default function RightNav({
-  rotateToggle,
-  allCellsLoaded,
-  currentTheme,
-  changeTheme,
-}: RightNavProps) {
+type RightNavProps = { numberOfCellsOnPage: number };
+
+export default function RightNav({ numberOfCellsOnPage }: RightNavProps) {
+  const {
+    isRotating,
+    setRotating,
+    currentTheme,
+    setTheme,
+    canvasStatuses,
+    currentColourPower,
+    setCurrentColourPower,
+  } = useContext(renderingSettingsContext);
   const [rotationSpeed, setRotationSpeed] = useState(1);
   const [zAxisAngle, setZAxisAngle] = useState(55); // TODO config file since repeated
   const [cameraRadius, setCameraRadius] = useState(40);
+  const loadedCount = Object.values(canvasStatuses).filter(
+    (x) => x === CanvasStatus.Loaded
+  ).length;
+  const allCellsLoaded = loadedCount === numberOfCellsOnPage;
+
   const changeZAxisAngle = (newVal: number) => {
     setZAxisAngle(newVal);
     sendSetZAxis(newVal);
@@ -45,7 +54,7 @@ export default function RightNav({
           marginTop: "20px",
           textAlign: "left",
           marginLeft: "8px",
-          color: "#5D5C61", // copied from colors.scss TODO
+          color: colours.Black,
           fontSize: "20px",
         }}
       >
@@ -55,13 +64,13 @@ export default function RightNav({
         style={{
           width: "50px",
           height: "2px",
-          backgroundColor: "#5D5C61", // copied from colors.scss
+          backgroundColor: colours.Black,
           marginLeft: "8px",
         }}
-      ></div>
+      />
       <Select
         value={currentTheme}
-        onChange={(e) => changeTheme(e.target.value as string)}
+        onChange={(e) => setTheme(e.target.value as string)}
         input={<Input disableUnderline />}
         variant={"filled"}
         renderValue={(value: unknown) => {
@@ -79,8 +88,18 @@ export default function RightNav({
           </MenuItem>
         ))}
       </Select>
+      <IconedSlider
+        value={currentColourPower}
+        onChange={setCurrentColourPower}
+        leftIconSrc={ICONS.colourLowPower}
+        rightIconSrc={ICONS.colourHighPower}
+        max={4}
+        min={0.1}
+        step={0.00001}
+      />
+
       <Button
-        onClick={rotateToggle}
+        onClick={() => setRotating(!isRotating)}
         disabled={!allCellsLoaded}
         variant="contained"
         className={"right-nav__button"}
@@ -107,12 +126,12 @@ export default function RightNav({
         step={0.0001}
       />
       <IconedSlider
-        value={cameraRadius}
-        onChange={changeCameraRadius}
+        value={85 - cameraRadius} // Invert the values so that the sliding is more natural
+        onChange={(val) => changeCameraRadius(85 - val)}
         leftIconSrc={ICONS.smallCircle}
         rightIconSrc={ICONS.bigCircle}
-        max={85}
-        min={20}
+        max={65}
+        min={0}
         step={0.0001}
       />
     </div>

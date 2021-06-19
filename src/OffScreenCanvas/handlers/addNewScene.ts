@@ -6,6 +6,8 @@ import { Vector3 } from "three";
 import { getRenderSettings, registerSceneForRendering } from "./renderer";
 import { OffscreenEventArgs } from "../EventTypes";
 import { sendBackMessage } from "../OffScreenCanvas.worker";
+import { CompressedObjLoader } from "./helpers/CompressedObjLoader";
+import { isLocalDev } from "../../util";
 
 export const cancelledLoadingFilepaths = new Set();
 export const currentlyLoadingFilepaths = new Set();
@@ -45,10 +47,11 @@ export const addNewScene = async ({
   );
   scene.add(lightHemi);
 
-  const objLoader = new OBJLoader();
+  const objLoader = isLocalDev ? new OBJLoader() : new CompressedObjLoader();
   const materialCreator = await getMaterialCreator(materialImageLocation);
   objLoader.setMaterials(materialCreator as any);
   currentlyLoadingFilepaths.add(objFilepath);
+  cancelledLoadingFilepaths.delete(objFilepath);
   objLoader.load(objFilepath, (root) => {
     currentlyLoadingFilepaths.delete(objFilepath);
     if (cancelledLoadingFilepaths.has(objFilepath)) return;

@@ -1,9 +1,8 @@
 import Button from "@material-ui/core/Button";
 import React from "react";
 import "./PagingBar.scss";
-import { sendChangeMaterial } from "../OffscreenCanvasMiddleware";
 import { PAGE_LAYOUT_CONFIG } from "../util";
-import { ICONS } from "../ObjFileLoad";
+import { ICONS } from "../FileLoader";
 
 type PaginationButtonProps = {
   pageIndex: number;
@@ -16,12 +15,11 @@ function PaginationButton({
   setPage,
 }: PaginationButtonProps) {
   return isCurrentPage ? (
-    <Button key={pageIndex + 1} className={"paging-bar__current-page-button"}>
+    <Button className={"paging-bar__current-page-button"}>
       {pageIndex + 1}
     </Button>
   ) : (
     <Button
-      key={pageIndex + 1}
       className={"paging-bar__other-page-button"}
       onClick={() => setPage(pageIndex)}
     >
@@ -42,6 +40,7 @@ const getPagingIndicator = (
   );
   const getButton = (pageIndex: number) => (
     <PaginationButton
+      key={pageIndex + 1}
       pageIndex={pageIndex}
       isCurrentPage={pageIndex === currentPage}
       setPage={setPage}
@@ -93,7 +92,7 @@ export default function PagingBar({
         className={"paging-bar__pagination-button"}
         variant="contained"
       >
-        <img src={ICONS.prevArrow} width="15px" />
+        <img src={ICONS.prevArrow} width="15px" alt={"Prev"} />
       </Button>
       {getPagingIndicator(totalPages, currentPage, setPage)}
       <Button
@@ -102,7 +101,7 @@ export default function PagingBar({
         className={"paging-bar__pagination-button"}
         variant="contained"
       >
-        <img src={ICONS.nextArrow} width="15px" />
+        <img src={ICONS.nextArrow} width="15px" alt={"Next"} />
       </Button>
     </div>
   );

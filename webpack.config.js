@@ -1,22 +1,42 @@
 var path = require("path");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-
-const baseConfig = {};
+var CopyWebpackPlugin = require("copy-webpack-plugin");
+// const webpack = require("webpack");
+// I think theoretically this is a worse solution than
+// const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
 
 const mainConfig = {
   mode: "development",
   plugins: [
     new HtmlWebpackPlugin({
-      title: "Application name",
+      title: "SPA",
       template: "./src/index.html",
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: "./src/404.html", to: "404.html" },
+        { from: "./src/data/icons", to: "./src/data/icons" },
+        { from: "./src/data/objMaterials", to: "./src/data/objMaterials" },
+        { from: "./src/data/objFiles", to: "./src/data/objFiles" },
+        {
+          from: "./src/data/objFilesCompressed",
+          to: "./src/data/objFilesCompressed",
+        },
+        {
+          from: "./src/data/highResHeatMaps",
+          to: "./src/data/highResHeatMaps",
+        },
+      ],
     }),
   ],
   module: {
     rules: [
       {
         test: /\.(tsx|ts)$/,
-        use: "ts-loader",
+        loader: "ts-loader",
+        options: {
+          transpileOnly: true,
+        },
         exclude: /node_modules/,
       },
       {
@@ -25,7 +45,14 @@ const mainConfig = {
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        use: ["file-loader"],
+        loader: "file-loader",
+        options: {
+          name(resourcePath, resourceQuery) {
+            // `resourcePath` - `/absolute/path/to/file.js`
+            // `resourceQuery` - `?foo=bar`
+            return "[path][name].[ext]";
+          },
+        },
       },
       {
         test: /\.(obj|mtl)$/,
@@ -59,14 +86,19 @@ const mainConfig = {
   output: {
     path: path.resolve(__dirname, "./dist"),
     filename: "main.js",
+    globalObject: "this",
+    publicPath: "http://localhost:8080/",
+  },
+  devServer: {
+    historyApiFallback: true,
   },
 };
 
-export const offscreenConfig = {
+const offscreenConfig = {
   name: "offscreen",
   entry: "./src/OffScreenCanvas/OffScreenCanvas.worker.ts",
   output: {
-    path: path.resolve(__dirname, "./dist/offscreen"),
+    path: path.resolve(__dirname, "./dist"),
     filename: "offscreen.js",
   },
   mode: "development",
