@@ -1,6 +1,6 @@
 import { Chip, InputBase, MenuItem, Select } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
-import { FileDetails, Gender } from "../FileLoader";
+import { FileDetails, Gender } from "../FileLoader/Datasets";
 import Input from "@material-ui/core/Input";
 import React from "react";
 import "./FilterBar.scss";
@@ -24,10 +24,10 @@ export default function FilterBar(props: FilterBarProps) {
     selectedAgeRanges,
     setSelectedAgeRanges,
   } = props;
-  const possibleGenders: Gender[] = Array.from(
+  const possibleGenders: (undefined | Gender)[] = Array.from(
     new Set([...unfilteredFileDetails.map((fd) => fd.gender)])
   );
-  const possibleAgeRanges: string[] = Array.from(
+  const possibleAgeRanges: (undefined | string)[] = Array.from(
     new Set([...unfilteredFileDetails.map((fd) => fd.ageRange)])
   );
   possibleAgeRanges.sort();

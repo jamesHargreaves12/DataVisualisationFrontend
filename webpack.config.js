@@ -76,6 +76,11 @@ const mainConfig = {
           "sass-loader",
         ],
       },
+      {
+        test: /\.ya?ml$/,
+        type: "json",
+        use: "yaml-loader",
+      },
     ],
   },
   resolve: {

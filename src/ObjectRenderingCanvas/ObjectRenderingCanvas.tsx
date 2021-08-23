@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import LoadingIndicator from "../LoadingIndicator";
 import CSSColours from "../CSSColours";
 import { sendAddNewScene, sendRemoveScene } from "../OffscreenCanvasMiddleware";
-import { FileDetails } from "../FileLoader";
+import { FileDetails } from "../FileLoader/Datasets";
 import renderingSettingsContext, {
   CanvasStatus,
 } from "../RenderingContext/RenderingContext";

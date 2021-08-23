@@ -15,6 +15,7 @@ export type OffscreenEventArgs = {
   setRotateSpeed: { speed: number };
   setZAxisAngle: { angle: number };
   setCameraRadius: { radius: number };
+  setHeightCap: { capPercent: number };
   changeColourPower: { power: number };
 };
 

@@ -4,7 +4,7 @@ import {
   NotifyOnScreenData,
 } from "../OffScreenCanvas/EventTypes";
 import { TopicSubscriptionManager } from "./TopicSubscriptionManager";
-import { getUrl } from "../FileLoader";
+import { getUrl } from "../FileLoader/Datasets";
 
 // This is currently very brittle. you should take alot of care before changing the following line. The name of the worker has to match the path in webpack.config.js
 // This should almost certainly be improved at some point
@@ -81,6 +81,10 @@ export function sendSetCameraRadius(radius: number) {
     type: "setCameraRadius",
     radius,
   });
+}
+
+export function sendSetHeightCap(capPercent: number) {
+  sendMessage({ type: "setHeightCap", capPercent });
 }
 
 export function sendRemoveAllScenes() {

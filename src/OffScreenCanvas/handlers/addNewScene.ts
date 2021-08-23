@@ -8,6 +8,8 @@ import { OffscreenEventArgs } from "../EventTypes";
 import { sendBackMessage } from "../OffScreenCanvas.worker";
 import { CompressedObjLoader } from "./helpers/CompressedObjLoader";
 import { isLocalDev } from "../../util";
+import { applyHeightCap, heightCapState } from "./changeHeightCap";
+import { setColourFromHeight } from "./helpers/TextureCoords";
 
 export const cancelledLoadingFilepaths = new Set();
 export const currentlyLoadingFilepaths = new Set();
@@ -55,6 +57,12 @@ export const addNewScene = async ({
   objLoader.load(objFilepath, (root) => {
     currentlyLoadingFilepaths.delete(objFilepath);
     if (cancelledLoadingFilepaths.has(objFilepath)) return;
+
+    if (heightCapState.capPercent < 100) {
+      applyHeightCap(root);
+    }
+    setColourFromHeight(root);
+
     scene.add(root);
     const box = new THREE.Box3().setFromObject(root);
     const boxCenter = box.getCenter(new THREE.Vector3());

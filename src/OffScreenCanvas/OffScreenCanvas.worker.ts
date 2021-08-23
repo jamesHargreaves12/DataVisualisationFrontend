@@ -14,6 +14,7 @@ import {
 } from "./EventTypes";
 import { changeMaterial } from "./handlers/changeMaterial";
 import { changeColourPower } from "./handlers/changeColourPower";
+import { setHeightCap } from "./handlers/changeHeightCap";
 // well this is grim... but it is a known issue with ts
 //https://github.com/microsoft/TypeScript/issues/14877
 declare var self: DedicatedWorkerGlobalScope;
@@ -28,9 +29,11 @@ const handlers: OffscreenEventHandlers = {
   setZAxisAngle,
   setCameraRadius,
   changeColourPower,
+  setHeightCap,
 };
 
 self.onmessage = function ({ data }: { data: MessageToWorker }) {
+  console.log("Message:", data.type);
   // @ts-ignore This does type I am not sure why ts doesn't recognise it TODO
   handlers[data.type](data);
 };

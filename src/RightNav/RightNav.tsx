@@ -1,21 +1,30 @@
 import Button from "@material-ui/core/Button";
 import {
   sendSetCameraRadius,
+  sendSetColourPower,
+  sendSetHeightCap,
   sendSetRotateSpeed,
   sendSetZAxis,
 } from "../OffscreenCanvasMiddleware";
 import React, { useContext, useState } from "react";
 import "./RightNav.scss";
-import { ICONS, MATERIAL_FILEPATHS } from "../FileLoader";
-import { MenuItem, Select, Slider } from "@material-ui/core";
+import { MenuItem, Select } from "@material-ui/core";
 import Input from "@material-ui/core/Input";
 import IconedSlider from "./IconedSlider/IconedSlider";
 import colours from "../CSSColours";
 import renderingSettingsContext, {
   CanvasStatus,
 } from "../RenderingContext/RenderingContext";
+import { debounced } from "../util";
+import { MATERIAL_FILEPATHS } from "../FileLoader/Materials";
+import { ICONS } from "../FileLoader/Icons";
 
 type RightNavProps = { numberOfCellsOnPage: number };
+
+const debouncedSendHeightCap = debounced((x: number) => sendSetHeightCap(x));
+const debouncedSendSetColourPower = debounced((x: number) =>
+  sendSetColourPower(x)
+);
 
 export default function RightNav({ numberOfCellsOnPage }: RightNavProps) {
   const {
@@ -24,12 +33,12 @@ export default function RightNav({ numberOfCellsOnPage }: RightNavProps) {
     currentTheme,
     setTheme,
     canvasStatuses,
-    currentColourPower,
-    setCurrentColourPower,
   } = useContext(renderingSettingsContext);
   const [rotationSpeed, setRotationSpeed] = useState(1);
   const [zAxisAngle, setZAxisAngle] = useState(55); // TODO config file since repeated
   const [cameraRadius, setCameraRadius] = useState(40);
+  const [heightCap, setHeightCap] = useState(100);
+  const [currentColourPower, setCurrentColourPower] = useState(1);
   const loadedCount = Object.values(canvasStatuses).filter(
     (x) => x === CanvasStatus.Loaded
   ).length;
@@ -47,6 +56,17 @@ export default function RightNav({ numberOfCellsOnPage }: RightNavProps) {
     setCameraRadius(newVal);
     sendSetCameraRadius(newVal);
   };
+
+  const changeHeightCap = (newVal: number) => {
+    setHeightCap(newVal);
+    debouncedSendHeightCap(newVal);
+  };
+
+  const changeColourPower = (newVal: number) => {
+    setCurrentColourPower(newVal);
+    debouncedSendSetColourPower(newVal);
+  };
+
   return (
     <div className={"right-nav"}>
       <div
@@ -90,7 +110,7 @@ export default function RightNav({ numberOfCellsOnPage }: RightNavProps) {
       </Select>
       <IconedSlider
         value={currentColourPower}
-        onChange={setCurrentColourPower}
+        onChange={changeColourPower}
         leftIconSrc={ICONS.colourLowPower}
         rightIconSrc={ICONS.colourHighPower}
         max={4}
@@ -133,6 +153,15 @@ export default function RightNav({ numberOfCellsOnPage }: RightNavProps) {
         max={65}
         min={0}
         step={0.0001}
+      />
+      <IconedSlider
+        value={heightCap}
+        onChange={changeHeightCap}
+        leftIconSrc={ICONS.smallCircle} // TODO
+        rightIconSrc={ICONS.bigCircle} // TODO
+        max={100}
+        min={1}
+        step={1}
       />
     </div>
   );

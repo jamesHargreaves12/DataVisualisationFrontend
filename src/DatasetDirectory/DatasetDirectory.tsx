@@ -1,4 +1,4 @@
-import { Dataset, DATASETS, FileDetails, getUrl } from "../FileLoader";
+import { Dataset, DATASETS, getUrl } from "../FileLoader/Datasets";
 import CSSColours from "../CSSColours";
 import {
   getCurrentPageDetails,
@@ -7,7 +7,7 @@ import {
 } from "../util";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import TileDisplay from "../TileDisplay/TileDisplay.";
+import TileDisplay from "../TileDisplay/TileDisplay";
 
 export default function DatasetDirectory() {
   const {

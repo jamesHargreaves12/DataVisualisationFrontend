@@ -1,0 +1,4 @@
+{
+  "title": "McDonalds",
+  "description": "The data being visualised here is the distance to the closest McDonald's restaurant. The location of the McDonald's restaurant was scraped from the API that powers the McDonald's restaurant locator (https://www.mcdonalds.com/gb/en-gb/restaurant-locator.html). The height of each pixel represents the distance of those living in that square to their closest McDonald's as the crow flies."
+}

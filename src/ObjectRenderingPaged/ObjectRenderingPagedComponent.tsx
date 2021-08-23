@@ -1,16 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ObjectRenderingCell from "../ObjectRenderingCell";
-import { DATASETS, FileDetails, Gender, getFilteredFiles } from "../FileLoader";
-import { getCurrentPageDetails, useCardCellLayout } from "../util";
 import {
-  sendRemoveAllScenes,
-  sendSetRotate,
-  workerNotifications,
-} from "../OffscreenCanvasMiddleware";
+  DATASETS,
+  FileDetails,
+  Gender,
+  getFilteredFiles,
+} from "../FileLoader/Datasets";
+import { getCurrentPageDetails, useCardCellLayout } from "../util";
+import { sendRemoveAllScenes } from "../OffscreenCanvasMiddleware";
 import FilterBar from "../FiltersBar/FilterBar";
 import RightNav from "../RightNav/RightNav";
-import TileDisplay from "../TileDisplay/TileDisplay.";
+import TileDisplay from "../TileDisplay/TileDisplay";
 import renderingSettingsContext from "../RenderingContext/RenderingContext";
 import CSSColours from "../CSSColours";
 
@@ -29,7 +30,7 @@ export default function ObjectRenderingPagedComponent() {
   const { datasetId } = useParams<{ datasetId: string }>();
   const dataset = DATASETS.find((d) => d.id === datasetId);
   if (!dataset) throw new Error("Unrecognised dataset"); // TODO handle this gracefully
-  const unfilteredFileDetails = dataset.objs;
+  const unfilteredFileDetails = dataset.objs();
   const filteredFiles = getFilteredFiles(
     unfilteredFileDetails,
     searchStatus,

@@ -2,7 +2,7 @@ import Button from "@material-ui/core/Button";
 import React from "react";
 import "./PagingBar.scss";
 import { PAGE_LAYOUT_CONFIG } from "../util";
-import { ICONS } from "../FileLoader";
+import { ICONS } from "../FileLoader/Icons";
 
 type PaginationButtonProps = {
   pageIndex: number;

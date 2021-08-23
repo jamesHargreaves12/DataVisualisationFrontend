@@ -8,10 +8,31 @@ import "./tmp/prototypes.js";
 import { PAGE_LAYOUT_CONFIG } from "./util";
 import { Switch, Route, useParams, Redirect } from "react-router-dom";
 import DatasetDirectory from "./DatasetDirectory/DatasetDirectory";
-import { getUrl } from "./FileLoader";
+import { DATASETS, getUrl } from "./FileLoader/Datasets";
 import { Link } from "react-router-dom";
 import { RenderingContextProvider } from "./RenderingContext/RenderingContext";
 import DetailView from "./DetailView/DetailView";
+
+function NavBar() {
+  const { datasetId } = useParams<{ datasetId?: string }>();
+  const datasetTitle = DATASETS.find(({ id }) => id === datasetId)?.title;
+  const title = (
+    <Link to={getUrl("/dataset")} style={{ color: "black" }}>
+      Data Visualisation
+    </Link>
+  );
+
+  if (datasetTitle)
+    return (
+      <div style={{ color: "black" }}>
+        {title} {">"}{" "}
+        <Link to={getUrl(`/dataset/${datasetId}`)} style={{ color: "black" }}>
+          {datasetTitle}
+        </Link>
+      </div>
+    );
+  return <div style={{ color: "black" }}>{title}</div>;
+}
 
 function App() {
   return (
@@ -20,9 +41,14 @@ function App() {
         className="nav-bar"
         style={{ height: PAGE_LAYOUT_CONFIG.topNavBarHeight }}
       >
-        <Link to={getUrl("/dataset")} style={{ color: "black" }}>
-          Data Visualisation
-        </Link>
+        <Switch>
+          <Route path={"/dataset/:datasetId"} exact={false}>
+            <NavBar />
+          </Route>
+          <Route path={"/"} exact={false}>
+            <NavBar />
+          </Route>
+        </Switch>
       </div>
       <div
         style={{
@@ -60,7 +86,7 @@ function AppRouting({ match }: { match: { path: string } }) {
       <Route path={match.path + "dataset"} exact={false}>
         <DatasetDirectory />
       </Route>
-      <Route path={match.path + ":other"} exact={false}>
+      <Route path={match.path} exact={false}>
         <Fallback />
       </Route>
     </Switch>

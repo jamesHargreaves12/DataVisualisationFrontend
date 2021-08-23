@@ -1,5 +1,4 @@
-import { createContext, memo, useEffect, useMemo, useState } from "react";
-import { MATERIAL_FILEPATHS } from "../FileLoader";
+import { createContext, useEffect, useMemo, useRef, useState } from "react";
 import {
   sendChangeMaterial,
   sendSetColourPower,
@@ -7,6 +6,7 @@ import {
   workerNotifications,
 } from "../OffscreenCanvasMiddleware";
 import { debounced } from "../util";
+import { MATERIAL_FILEPATHS } from "../FileLoader/Materials";
 export enum CanvasStatus {
   Unloaded,
   Loaded,
@@ -20,8 +20,6 @@ const renderingSettingsContext = createContext<{
   reportCanvasStatusChange: (canvasId: string, status: CanvasStatus) => void;
   isRotating: boolean;
   setRotating: (rotating: boolean) => void;
-  currentColourPower: number;
-  setCurrentColourPower: (power: number) => void;
 }>({
   currentTheme: MATERIAL_FILEPATHS[0],
   setTheme: () => {},
@@ -29,9 +27,31 @@ const renderingSettingsContext = createContext<{
   reportCanvasStatusChange: () => {},
   isRotating: false,
   setRotating: () => {},
-  currentColourPower: 1,
-  setCurrentColourPower: () => {},
 });
+
+type CanvasStatusState = {
+  [k: string]: CanvasStatus;
+};
+const useCanvasStatuses = () => {
+  // This is kinda ugly but I think necessary since:
+  // 1) We need state that we can inspect the current version of rather than the version
+  // on the last rerender due to the fact that multiple canvas status can change status between renders.
+  // 2) We need to trigger a rerender when the state updates to ensure that down stream consumers of the state can use it.
+
+  const [
+    canvasStatusLastUpdated,
+    setCanvasStatusLastUpdated,
+  ] = useState<number>();
+  const canvasStatusesRef = useRef<CanvasStatusState>({});
+  const reportCanvasStatusChange = (canvasId: string, status: CanvasStatus) => {
+    canvasStatusesRef.current[canvasId] = status;
+    setCanvasStatusLastUpdated(Date.now());
+  };
+  return {
+    canvasStatuses: canvasStatusesRef.current,
+    reportCanvasStatusChange,
+  };
+};
 
 export function RenderingContextProvider({
   children,
@@ -40,18 +60,12 @@ export function RenderingContextProvider({
 }) {
   const { Provider } = renderingSettingsContext;
   const [currentTheme, setTheme] = useState(MATERIAL_FILEPATHS[0]);
-  const [currentColourPower, setCurrentColourPower] = useState(1);
-  const [canvasStatuses, setCanvasStatuses] = useState<{
-    [k: string]: CanvasStatus;
-  }>({});
   const [isRotating, setIsRotating] = useState(false);
   const setRotating = (val: boolean) => {
     sendSetRotate(val);
     setIsRotating(val);
   };
-  const reportCanvasStatusChange = (canvasId: string, status: CanvasStatus) => {
-    setCanvasStatuses({ ...canvasStatuses, [canvasId]: status });
-  };
+  const { canvasStatuses, reportCanvasStatusChange } = useCanvasStatuses();
   useEffect(() => {
     const subscriptionId = "useCellStatus";
     workerNotifications.subscribe(
@@ -70,14 +84,6 @@ export function RenderingContextProvider({
     sendChangeMaterial(currentTheme);
   }, [currentTheme]);
 
-  const debouncedSendCurrentColourPower = useMemo(
-    () => debounced((x: number) => sendSetColourPower(x)),
-    [sendSetColourPower]
-  );
-  useEffect(() => {
-    debouncedSendCurrentColourPower(currentColourPower);
-  }, [currentColourPower, debouncedSendCurrentColourPower]);
-
   return (
     <Provider
       value={{
@@ -87,8 +93,6 @@ export function RenderingContextProvider({
         reportCanvasStatusChange,
         isRotating,
         setRotating,
-        setCurrentColourPower,
-        currentColourPower,
       }}
     >
       {children}

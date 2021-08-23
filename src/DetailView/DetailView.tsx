@@ -4,9 +4,10 @@ import CSSColours from "../CSSColours";
 import RightNav from "../RightNav/RightNav";
 import React, { useContext } from "react";
 import { useParams, useHistory, Link } from "react-router-dom";
-import { DATASETS, getUrl, ICONS } from "../FileLoader";
+import { DATASETS, getUrl } from "../FileLoader/Datasets";
 import { Button } from "react-bootstrap";
 import renderingSettingsContext from "../RenderingContext/RenderingContext";
+import { ICONS } from "../FileLoader/Icons";
 
 export default function DetailView() {
   const { contentAreaWidth, contentAreaHeight } = useContentLayout(true);
@@ -17,13 +18,13 @@ export default function DetailView() {
     objId: string;
     datasetId: string;
   }>();
-  const fileDetails = DATASETS.find(({ id }) => id === datasetId)?.objs.find(
-    ({ id }) => id === objId
-  );
+  const fileDetails = DATASETS.find(({ id }) => id === datasetId)
+    ?.objs()
+    .find(({ id }) => id === objId);
   if (!fileDetails) throw new Error("Page Not found");
 
   // This could be dried up a bit as it is initially copied from object rendering paged component but at this point there
-  // is a question over wether we want to tie these two pages together or just leave as wet.
+  // is a question over whether we want to tie these two pages together or just leave as wet.
   const padding = 10;
   const titleHeight = 25;
   const width = size + padding * 2;

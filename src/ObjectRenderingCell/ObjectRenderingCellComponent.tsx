@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { FileDetails, getUrl } from "../FileLoader";
+import { FileDetails, getUrl } from "../FileLoader/Datasets";
 import "./ObjectRenderingCellComponent.scss";
 import { PAGE_LAYOUT_CONFIG } from "../util";
 import ObjectRenderingCanvas from "../ObjectRenderingCanvas/ObjectRenderingCanvas";

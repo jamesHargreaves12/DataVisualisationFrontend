@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { currentlyLoadingFilepaths } from "./OffScreenCanvas/handlers/addNewScene";
 
 export const batchArray = <T>(arr: T[], groupSize: number, fillValue?: T) => {
   const batched = arr
@@ -40,7 +39,7 @@ export const getCurrentPageDetails = <T>(
   };
 };
 
-let timeout: any; // TODO I don't think this is used
+let timeout: any;
 export const debounced = (
   fn: (...args: any[]) => void,
   delay: number = 200
