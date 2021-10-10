@@ -6,7 +6,7 @@ import {
   sendSetRotateSpeed,
   sendSetZAxis,
 } from "../OffscreenCanvasMiddleware";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./RightNav.scss";
 import { MenuItem, Select } from "@material-ui/core";
 import Input from "@material-ui/core/Input";
@@ -18,15 +18,22 @@ import renderingSettingsContext, {
 import { debounced } from "../util";
 import { MATERIAL_FILEPATHS } from "../FileLoader/Materials";
 import { ICONS } from "../FileLoader/Icons";
+import { RightNavSettings } from "../FileLoader/Datasets";
 
-type RightNavProps = { numberOfCellsOnPage: number };
+type RightNavProps = {
+  numberOfCellsOnPage: number;
+  rightNavDefaultSettings: RightNavSettings;
+};
 
 const debouncedSendHeightCap = debounced((x: number) => sendSetHeightCap(x));
 const debouncedSendSetColourPower = debounced((x: number) =>
   sendSetColourPower(x)
 );
 
-export default function RightNav({ numberOfCellsOnPage }: RightNavProps) {
+export default function RightNav({
+  numberOfCellsOnPage,
+  rightNavDefaultSettings,
+}: RightNavProps) {
   const {
     isRotating,
     setRotating,
@@ -35,7 +42,7 @@ export default function RightNav({ numberOfCellsOnPage }: RightNavProps) {
     canvasStatuses,
   } = useContext(renderingSettingsContext);
   const [rotationSpeed, setRotationSpeed] = useState(1);
-  const [zAxisAngle, setZAxisAngle] = useState(55); // TODO config file since repeated
+  const [zAxisAngle, setZAxisAngle] = useState(55);
   const [cameraRadius, setCameraRadius] = useState(40);
   const [heightCap, setHeightCap] = useState(100);
   const [currentColourPower, setCurrentColourPower] = useState(1);
@@ -56,6 +63,9 @@ export default function RightNav({ numberOfCellsOnPage }: RightNavProps) {
     setCameraRadius(newVal);
     sendSetCameraRadius(newVal);
   };
+  useEffect(() => {
+    changeCameraRadius(rightNavDefaultSettings.cameraRadius ?? 40);
+  }, [rightNavDefaultSettings.cameraRadius]);
 
   const changeHeightCap = (newVal: number) => {
     setHeightCap(newVal);
@@ -66,6 +76,10 @@ export default function RightNav({ numberOfCellsOnPage }: RightNavProps) {
     setCurrentColourPower(newVal);
     debouncedSendSetColourPower(newVal);
   };
+
+  useEffect(() => {
+    changeColourPower(rightNavDefaultSettings.colorExponent ?? 1);
+  }, [rightNavDefaultSettings.colorExponent]);
 
   return (
     <div className={"right-nav"}>
@@ -150,15 +164,15 @@ export default function RightNav({ numberOfCellsOnPage }: RightNavProps) {
         onChange={(val) => changeCameraRadius(85 - val)}
         leftIconSrc={ICONS.smallCircle}
         rightIconSrc={ICONS.bigCircle}
-        max={65}
+        max={75}
         min={0}
         step={0.0001}
       />
       <IconedSlider
         value={heightCap}
         onChange={changeHeightCap}
-        leftIconSrc={ICONS.smallCircle} // TODO
-        rightIconSrc={ICONS.bigCircle} // TODO
+        leftIconSrc={ICONS.withCap}
+        rightIconSrc={ICONS.noCap}
         max={100}
         min={1}
         step={1}

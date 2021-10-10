@@ -17,10 +17,11 @@ export type SceneElement = {
 
 const sceneElements: Record<string, SceneElement> = {};
 const prevRenderTime: Record<string, number> = {};
+// These values will be almost immediately overwritten so do not treat the following values as the default values - see RightNav.tsx
 const renderSettings = {
   shouldRotate: false,
   rotationSpeed: 1,
-  zAxisAngle: 55, // these defaults are present in 2 place TODO
+  zAxisAngle: 55,
   cameraRadius: 40,
 };
 
@@ -151,5 +152,6 @@ export const setZAxisAngle = ({
 export const setCameraRadius = ({
   radius,
 }: OffscreenEventArgs["setCameraRadius"]) => {
+  console.log(radius);
   renderSettings.cameraRadius = radius;
 };

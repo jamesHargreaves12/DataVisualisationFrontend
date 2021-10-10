@@ -72,24 +72,22 @@ function App() {
 function AppRouting({ match }: { match: { path: string } }) {
   console.log(match);
   return (
-    <Switch>
-      <Route path={match.path + "dataset/:datasetId/:objId"} exact={false}>
-        <RenderingContextProvider key={"detail"}>
+    <RenderingContextProvider key={"detail"}>
+      <Switch>
+        <Route path={match.path + "dataset/:datasetId/:objId"} exact={false}>
           <DetailView />
-        </RenderingContextProvider>
-      </Route>
-      <Route path={match.path + "dataset/:datasetId"} exact={false}>
-        <RenderingContextProvider key={"paged objs"}>
+        </Route>
+        <Route path={match.path + "dataset/:datasetId"} exact={false}>
           <ObjectRenderingPagedComponent />
-        </RenderingContextProvider>
-      </Route>
-      <Route path={match.path + "dataset"} exact={false}>
-        <DatasetDirectory />
-      </Route>
-      <Route path={match.path} exact={false}>
-        <Fallback />
-      </Route>
-    </Switch>
+        </Route>
+        <Route path={match.path + "dataset"} exact={false}>
+          <DatasetDirectory />
+        </Route>
+        <Route path={match.path} exact={false}>
+          <Fallback />
+        </Route>
+      </Switch>
+    </RenderingContextProvider>
   );
 }
 

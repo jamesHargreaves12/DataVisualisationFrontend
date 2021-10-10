@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import LoadingIndicator from "../LoadingIndicator";
 import CSSColours from "../CSSColours";
 import { sendAddNewScene, sendRemoveScene } from "../OffscreenCanvasMiddleware";
@@ -51,6 +51,7 @@ export default function ObjectRenderingCanvas({
     renderingSettingsContext
   );
   const canvasLoaded = canvasStatuses[canvasId] === CanvasStatus.Loaded;
+  const descriptionRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     console.log("Unloaded", canvasId);
     reportCanvasStatusChange(canvasId, CanvasStatus.Unloaded);
@@ -68,6 +69,11 @@ export default function ObjectRenderingCanvas({
       sendRemoveScene(canvasId, objFileDetails.filepath);
     };
   }, [objFileDetails.filepath]);
+
+  useEffect(() => {
+    if (descriptionRef.current)
+      descriptionRef.current.innerHTML = objFileDetails.description;
+  }, []);
 
   return (
     <div
@@ -88,10 +94,13 @@ export default function ObjectRenderingCanvas({
       {!canvasLoaded && <LoadingIndicator width={width} height={height} />}
       {objFileDetails.description && includeDescription && (
         <div
-          style={{ backgroundColor: CSSColours.Primary5, paddingTop: "10px" }}
-        >
-          {objFileDetails.description}
-        </div>
+          ref={descriptionRef}
+          style={{
+            backgroundColor: CSSColours.Primary5,
+            paddingTop: "10px",
+            textAlign: "left",
+          }}
+        ></div>
       )}
     </div>
   );

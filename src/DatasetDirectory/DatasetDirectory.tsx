@@ -15,7 +15,7 @@ export default function DatasetDirectory() {
     horizontalPadding,
     rowCount,
     verticalPadding,
-  } = useCardCellLayout();
+  } = useCardCellLayout(false);
   const {
     widthCell,
     heightCell,

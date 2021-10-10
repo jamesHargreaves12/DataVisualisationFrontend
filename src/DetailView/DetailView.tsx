@@ -3,9 +3,8 @@ import { useContentLayout } from "../util";
 import CSSColours from "../CSSColours";
 import RightNav from "../RightNav/RightNav";
 import React, { useContext } from "react";
-import { useParams, useHistory, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { DATASETS, getUrl } from "../FileLoader/Datasets";
-import { Button } from "react-bootstrap";
 import renderingSettingsContext from "../RenderingContext/RenderingContext";
 import { ICONS } from "../FileLoader/Icons";
 
@@ -18,10 +17,10 @@ export default function DetailView() {
     objId: string;
     datasetId: string;
   }>();
-  const fileDetails = DATASETS.find(({ id }) => id === datasetId)
-    ?.objs()
-    .find(({ id }) => id === objId);
-  if (!fileDetails) throw new Error("Page Not found");
+  const currentDataSet = DATASETS.find(({ id }) => id === datasetId);
+  if (!currentDataSet) throw new Error("Dataset not found");
+  const fileDetails = currentDataSet.objs().find(({ id }) => id === objId);
+  if (!fileDetails) throw new Error("File not found");
 
   // This could be dried up a bit as it is initially copied from object rendering paged component but at this point there
   // is a question over whether we want to tie these two pages together or just leave as wet.
@@ -29,7 +28,6 @@ export default function DetailView() {
   const titleHeight = 25;
   const width = size + padding * 2;
   if (!contentAreaWidth || !contentAreaHeight) return null;
-  console.log(fileDetails);
   return (
     <div style={{ display: "flex", paddingLeft: "10px", width: "100%" }}>
       <div
@@ -75,7 +73,10 @@ export default function DetailView() {
           width: "300px",
         }}
       >
-        <RightNav numberOfCellsOnPage={1} />
+        <RightNav
+          numberOfCellsOnPage={1}
+          rightNavDefaultSettings={currentDataSet.rightNavDefaultSettings}
+        />
       </div>
     </div>
   );

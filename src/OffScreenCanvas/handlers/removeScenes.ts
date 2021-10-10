@@ -54,8 +54,8 @@ export const removeScene = ({
   id,
   objFilepath,
 }: OffscreenEventArgs["removeScene"]) => {
-  if (currentlyLoadingFilepaths.has(objFilepath))
-    cancelledLoadingFilepaths.add(objFilepath);
+  if (currentlyLoadingFilepaths.current.has(objFilepath))
+    cancelledLoadingFilepaths.current.add(objFilepath);
 
   const sceneInfo = getSceneIfExists(id);
   if (sceneInfo?.scene) {

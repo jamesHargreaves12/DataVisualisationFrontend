@@ -1,4 +1,4 @@
 {
   "title": "Iceland",
-  "description": "TODO"
+  "description": "<p>The data being visualised here is the location of Iceland stores. The height of each pixel represents the distance to the closest Iceland store as the crow flies. </p> <p>The location of the Iceland stores were scraped from the API that powers the Iceland Store Finder (<a href='https://www.iceland.co.uk/store-finder'>https://www.iceland.co.uk/store-finder</a>). The API was last scraped for updates on 31st May 2021. For more information, the source code that created this dataset is here <a href='https://github.com/jamesHargreaves12/DataVis_python'>https://github.com/jamesHargreaves12/DataVis_python</a>.</p>"
 }

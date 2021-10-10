@@ -13,6 +13,8 @@ export const ICONS = {
   prevArrow: "/src/data/icons/prevArrow.svg",
   colourHighPower: "/src/data/icons/colourHighPower.svg",
   colourLowPower: "/src/data/icons/colourLowPower.svg",
+  noCap: "/src/data/icons/noCap.svg",
+  withCap: "/src/data/icons/withCap.svg",
   // https://svgsilh.com/image/48433.html
   cheetah: "/src/data/icons/cheetah.svg",
   // https://freesvg.org/1445302539

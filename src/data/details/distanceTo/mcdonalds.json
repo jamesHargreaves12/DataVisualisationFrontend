@@ -1,4 +1,4 @@
 {
-  "title": "McDonalds",
-  "description": "The data being visualised here is the distance to the closest McDonald's restaurant. The location of the McDonald's restaurant was scraped from the API that powers the McDonald's restaurant locator (https://www.mcdonalds.com/gb/en-gb/restaurant-locator.html). The height of each pixel represents the distance of those living in that square to their closest McDonald's as the crow flies."
+  "title": "McDonald's",
+  "description": "<p>The data being visualised here is the location of Mcdonald's Restaurants. The height of each pixel represents the distance to the closest Mcdonald's restaurant as the crow flies. </p> <p>The location of the Mcdonald's Restaurants were scraped from the API that powers the Mcdonald's Restaurant Locator (<a href='https://www.mcdonalds.com/gb/en-gb/restaurant-locator.html'>https://www.mcdonalds.com/gb/en-gb/restaurant-locator.html</a>). The API was last scraped for updates on 31st May 2021. For more information, the source code that created this dataset is here <a href='https://github.com/jamesHargreaves12/DataVis_python'>https://github.com/jamesHargreaves12/DataVis_python</a>.</p>"
 }

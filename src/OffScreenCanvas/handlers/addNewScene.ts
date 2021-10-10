@@ -11,8 +11,8 @@ import { isLocalDev } from "../../util";
 import { applyHeightCap, heightCapState } from "./changeHeightCap";
 import { setColourFromHeight } from "./helpers/TextureCoords";
 
-export const cancelledLoadingFilepaths = new Set();
-export const currentlyLoadingFilepaths = new Set();
+export const cancelledLoadingFilepaths = { current: new Set() };
+export const currentlyLoadingFilepaths = { current: new Set() };
 
 export const addNewScene = async ({
   id,
@@ -23,10 +23,10 @@ export const addNewScene = async ({
   materialImageLocation,
 }: OffscreenEventArgs["addNewScene"]) => {
   // TODO send these over
-  const { cameraRadius, zAxisAngle } = getRenderSettings();
+  const { zAxisAngle } = getRenderSettings();
   const fov = 35;
   const intensityAmb = 1;
-  const initialDegreesXY = 35;
+  const initialDegreesXY = -10;
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(
@@ -52,11 +52,11 @@ export const addNewScene = async ({
   const objLoader = isLocalDev ? new OBJLoader() : new CompressedObjLoader();
   const materialCreator = await getMaterialCreator(materialImageLocation);
   objLoader.setMaterials(materialCreator as any);
-  currentlyLoadingFilepaths.add(objFilepath);
-  cancelledLoadingFilepaths.delete(objFilepath);
+  currentlyLoadingFilepaths.current.add(objFilepath);
+  cancelledLoadingFilepaths.current.delete(objFilepath);
   objLoader.load(objFilepath, (root) => {
-    currentlyLoadingFilepaths.delete(objFilepath);
-    if (cancelledLoadingFilepaths.has(objFilepath)) return;
+    currentlyLoadingFilepaths.current.delete(objFilepath);
+    if (cancelledLoadingFilepaths.current.has(objFilepath)) return;
 
     if (heightCapState.capPercent < 100) {
       applyHeightCap(root);
@@ -69,12 +69,16 @@ export const addNewScene = async ({
     const newOrigin = [boxCenter.x, boxCenter.y, 0];
     // reset the object so that it is centered at the origin
     root.position.set(-newOrigin[0], -newOrigin[1], -newOrigin[2]);
+    const deltaY = box.max.y - box.min.y;
+
+    const cameraRadius = deltaY + 13;
+
     const zPos = cameraRadius * Math.sin((Math.PI * zAxisAngle) / 180);
 
     const { x, y, upX, upY } = getNextCameraSettings(
       new Vector3(
         -cameraRadius * Math.sin((Math.PI * initialDegreesXY) / 180),
-        0.01,
+        -cameraRadius * Math.cos((Math.PI * initialDegreesXY) / 180),
         zPos
       ),
       0,
@@ -90,6 +94,8 @@ export const addNewScene = async ({
       canvasWidth,
       canvasHeight,
     });
+
+    if (cancelledLoadingFilepaths.current.has(objFilepath)) return;
 
     sendBackMessage({ type: "canvasRendered", canvasId: id });
   });

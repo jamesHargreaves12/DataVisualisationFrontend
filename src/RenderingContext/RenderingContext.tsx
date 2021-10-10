@@ -48,6 +48,7 @@ const useCanvasStatuses = () => {
     setCanvasStatusLastUpdated(Date.now());
   };
   return {
+    canvasStatusesRef,
     canvasStatuses: canvasStatusesRef.current,
     reportCanvasStatusChange,
   };
@@ -65,7 +66,11 @@ export function RenderingContextProvider({
     sendSetRotate(val);
     setIsRotating(val);
   };
-  const { canvasStatuses, reportCanvasStatusChange } = useCanvasStatuses();
+  const {
+    canvasStatuses,
+    reportCanvasStatusChange,
+    canvasStatusesRef,
+  } = useCanvasStatuses();
   useEffect(() => {
     const subscriptionId = "useCellStatus";
     workerNotifications.subscribe(
@@ -73,8 +78,9 @@ export function RenderingContextProvider({
       subscriptionId,
       ({ canvasId }: { canvasId: string }) => {
         console.log("Loaded", canvasId);
-        if (canvasStatuses[canvasId] != CanvasStatus.Removed)
+        if (canvasStatusesRef.current[canvasId] != CanvasStatus.Removed) {
           reportCanvasStatusChange(canvasId, CanvasStatus.Loaded);
+        }
       }
     );
     return () =>

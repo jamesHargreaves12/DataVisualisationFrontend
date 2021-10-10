@@ -125,7 +125,7 @@ export const useContentLayout = (withRightNav: boolean) => {
   };
 };
 
-export const useCardCellLayout = () => {
+export const useCardCellLayout = (withRightNav = true) => {
   const {
     widthCell,
     heightCell,
@@ -135,7 +135,9 @@ export const useCardCellLayout = () => {
     pagingBarHeight,
     cellTitleHeight,
   } = PAGE_LAYOUT_CONFIG;
-  const { contentAreaWidth, contentAreaHeight } = useContentLayout(true);
+  const { contentAreaWidth, contentAreaHeight } = useContentLayout(
+    withRightNav
+  );
   const totalCellWidth = 2 * cellMarginSize + 2 * cellPaddingSize + widthCell;
   const cellsPerRow = Math.floor(contentAreaWidth / totalCellWidth);
   const horizontalPadding = (contentAreaWidth % totalCellWidth) / 2;

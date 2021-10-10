@@ -13,6 +13,7 @@ function sendMessage(data: MessageToWorker, transfer: Transferable[] = []) {
   worker.postMessage(data, transfer);
 }
 
+// TODO why do we do this?
 const canvas = document.createElement("canvas");
 document.body.appendChild(canvas);
 canvas.style.width = `100px`;

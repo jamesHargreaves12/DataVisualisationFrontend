@@ -1,37 +1,19 @@
 import { Chip, InputBase, MenuItem, Select } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
-import { FileDetails, Gender } from "../FileLoader/Datasets";
+import { FileDetails } from "../FileLoader/Datasets";
 import Input from "@material-ui/core/Input";
 import React from "react";
 import "./FilterBar.scss";
 import { PAGE_LAYOUT_CONFIG } from "../util";
 
 export type FilterBarProps = {
-  selectedGenders: Gender[];
-  setSelectedGenders: (genders: Gender[]) => void;
-  selectedAgeRanges: string[];
-  setSelectedAgeRanges: (genders: Gender[]) => void;
   setSearchStatus: (value: string) => void;
   unfilteredFileDetails: FileDetails[];
+  filterDetails: Omit<FacetFilterProps, "possibleValues">[];
 };
 
 export default function FilterBar(props: FilterBarProps) {
-  const {
-    selectedGenders,
-    setSelectedGenders,
-    setSearchStatus,
-    unfilteredFileDetails,
-    selectedAgeRanges,
-    setSelectedAgeRanges,
-  } = props;
-  const possibleGenders: (undefined | Gender)[] = Array.from(
-    new Set([...unfilteredFileDetails.map((fd) => fd.gender)])
-  );
-  const possibleAgeRanges: (undefined | string)[] = Array.from(
-    new Set([...unfilteredFileDetails.map((fd) => fd.ageRange)])
-  );
-  possibleAgeRanges.sort();
-
+  const { setSearchStatus, unfilteredFileDetails, filterDetails } = props;
   return (
     <div
       className="object-filter-bar"
@@ -47,84 +29,93 @@ export default function FilterBar(props: FilterBarProps) {
         />
         <SearchIcon />
       </div>
-      {possibleGenders.length > 1 && (
-        <div className={"object-filter-bar__filter"}>
-          <Select
-            label={"Genders"}
-            multiple={true}
-            displayEmpty={true}
-            value={selectedGenders}
-            onChange={(e) => setSelectedGenders(e.target.value as Gender[])}
-            input={<Input />}
-            variant={"filled"}
-            renderValue={(value: unknown) => {
-              let genders = value as Gender[];
-              if (genders.length === 0)
-                return (
-                  <div className={"object-filter-bar__filter-chip-group"}>
-                    Gender
-                  </div>
-                );
-              return (
-                <div className={"object-filter-bar__filter-chip-group"}>
-                  {genders.map((g) => (
-                    <Chip
-                      key={g}
-                      label={g}
-                      className={"object-filter-bar__filter-chip"}
-                    />
-                  ))}
-                </div>
-              );
-            }}
-          >
-            {possibleGenders.map((name) => (
-              <MenuItem key={name} value={name}>
-                {name}
-              </MenuItem>
-            ))}
-          </Select>
-        </div>
-      )}
-      {possibleAgeRanges.length > 1 && (
-        <div className={"object-filter-bar__filter"}>
-          <Select
-            label={"Age Ranges"}
-            multiple={true}
-            displayEmpty={true}
-            value={selectedAgeRanges}
-            onChange={(e) => setSelectedAgeRanges(e.target.value as Gender[])}
-            input={<Input />}
-            variant={"filled"}
-            renderValue={(value: unknown) => {
-              let ageRange = value as string[];
-              if (ageRange.length === 0)
-                return (
-                  <div className={"object-filter-bar__filter-chip-group"}>
-                    Age Ranges
-                  </div>
-                );
-              return (
-                <div className={"object-filter-bar__filter-chip-group"}>
-                  {ageRange.map((v) => (
-                    <Chip
-                      key={v}
-                      label={v}
-                      className={"object-filter-bar__filter-chip"}
-                    />
-                  ))}
-                </div>
-              );
-            }}
-          >
-            {possibleAgeRanges.map((name) => (
-              <MenuItem key={name} value={name}>
-                {name}
-              </MenuItem>
-            ))}
-          </Select>
-        </div>
-      )}
+      <FacetFilterList
+        filterDetails={filterDetails}
+        unfilteredFileDetails={unfilteredFileDetails}
+      />
+    </div>
+  );
+}
+
+function FacetFilterList({
+  filterDetails,
+  unfilteredFileDetails,
+}: {
+  filterDetails: Omit<FacetFilterProps, "possibleValues">[];
+  unfilteredFileDetails: FileDetails[];
+}) {
+  const returnValue = filterDetails.map((filterDetail) => {
+    const possibleValues = Array.from(
+      new Set(
+        unfilteredFileDetails
+          .map((x) => x.datasetSpecificTags?.[filterDetail.label])
+          .filter((x) => x != undefined) as string[]
+      )
+    );
+    possibleValues.sort();
+    if (possibleValues.length === 0) {
+      return <></>;
+    }
+    return (
+      <FacetFilter
+        key={filterDetail.label}
+        possibleValues={possibleValues}
+        {...filterDetail}
+      />
+    );
+  });
+  return <>{returnValue}</>;
+}
+
+export type FacetFilterProps = {
+  possibleValues: string[];
+  setSelectedValues: (v: string[]) => void;
+  selectedValues: string[];
+  label: string;
+};
+function FacetFilter({
+  possibleValues,
+  setSelectedValues,
+  selectedValues,
+  label,
+}: FacetFilterProps) {
+  return (
+    <div className={"object-filter-bar__filter"}>
+      <Select
+        label={label}
+        multiple={true}
+        displayEmpty={true}
+        value={selectedValues}
+        onChange={(e) => setSelectedValues(e.target.value as string[])}
+        input={<Input />}
+        variant={"filled"}
+        renderValue={(value: unknown) => {
+          let selectedVals = value as string[];
+          if (selectedVals.length === 0)
+            return (
+              <div className={"object-filter-bar__filter-chip-group"}>
+                {label}
+              </div>
+            );
+          return (
+            <div className={"object-filter-bar__filter-chip-group"}>
+              {selectedVals.map((g) => (
+                <Chip
+                  key={g}
+                  label={g}
+                  className={"object-filter-bar__filter-chip"}
+                />
+              ))}
+            </div>
+          );
+        }}
+      >
+        {possibleValues.map((name) => (
+          <MenuItem key={name} value={name}>
+            {name}
+          </MenuItem>
+        ))}
+      </Select>
     </div>
   );
 }

@@ -32,8 +32,8 @@ const handlers: OffscreenEventHandlers = {
   setHeightCap,
 };
 
-self.onmessage = function ({ data }: { data: MessageToWorker }) {
-  console.log("Message:", data.type);
+self.onmessage = async function ({ data }: { data: MessageToWorker }) {
+  // console.log("recieve", data.type);
   // @ts-ignore This does type I am not sure why ts doesn't recognise it TODO
   handlers[data.type](data);
 };
