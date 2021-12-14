@@ -70,7 +70,7 @@ function App() {
 }
 
 function AppRouting({ match }: { match: { path: string } }) {
-  console.log(match);
+  // console.log(match);
   return (
     <RenderingContextProvider key={"detail"}>
       <Switch>

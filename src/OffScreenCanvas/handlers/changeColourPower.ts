@@ -9,6 +9,7 @@ export const colorPowerState = { current: 1 };
 export const changeColourPower = ({
   power,
 }: OffscreenEventArgs["changeColourPower"]) => {
+  console.log(power);
   getScenesAndIds().forEach(async ([id, sceneElement]) => {
     sceneElement.scene.children.forEach((child) => {
       if (child instanceof Group) {

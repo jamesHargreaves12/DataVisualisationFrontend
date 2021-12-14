@@ -34,7 +34,6 @@ export default function DetailView() {
         style={{
           backgroundColor: CSSColours.Primary5,
           width: width,
-          // height: size + titleHeight + padding * 2,
           borderRadius: "10px",
           marginTop: "10px",
           marginLeft: (contentAreaWidth - width) / 2,

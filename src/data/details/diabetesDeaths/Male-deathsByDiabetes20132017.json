@@ -1,0 +1,9 @@
+{
+    "idOverride": "Male",
+    "title": "Male",
+    "src": "https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/adhocs/009524deathsfromdiabetesbysexandmiddlelayersuperoutputareamsoaengland2013to2017",
+    "description": "The number of Male deaths that were attributed to diabetes between 2013-2017 per 100,000 people.",
+    "datasetSpecificTags": {
+        "Gender": "Male"
+    }
+}

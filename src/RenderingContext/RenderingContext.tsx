@@ -77,7 +77,7 @@ export function RenderingContextProvider({
       "canvasRendered",
       subscriptionId,
       ({ canvasId }: { canvasId: string }) => {
-        console.log("Loaded", canvasId);
+        // console.log("Loaded", canvasId);
         if (canvasStatusesRef.current[canvasId] != CanvasStatus.Removed) {
           reportCanvasStatusChange(canvasId, CanvasStatus.Loaded);
         }

@@ -14,6 +14,7 @@ export const heightCapState: {
 export const setHeightCap = ({
   capPercent,
 }: OffscreenEventArgs["setHeightCap"]) => {
+  console.log(capPercent);
   heightCapState.capPercent = capPercent;
   getScenesAndIds().forEach(async ([id, sceneElement]) => {
     AdjustSceneByHeightCap(id, sceneElement);

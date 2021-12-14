@@ -82,7 +82,7 @@ export default function RightNav({
   }, [rightNavDefaultSettings.colorExponent]);
 
   return (
-    <div className={"right-nav"}>
+    <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
       <div
         style={{
           marginTop: "20px",
@@ -136,8 +136,7 @@ export default function RightNav({
         onClick={() => setRotating(!isRotating)}
         disabled={!allCellsLoaded}
         variant="contained"
-        className={"right-nav__button"}
-        style={{ marginTop: "20px" }}
+        style={{ marginTop: "20px", marginLeft: "10px", marginRight: "10px" }}
       >
         <img src={ICONS.rotate} />
       </Button>
@@ -177,6 +176,22 @@ export default function RightNav({
         min={1}
         step={1}
       />
+      <div style={{ flexGrow: 1, display: "flex", flexDirection: "column" }}>
+        <div style={{ flexGrow: 3 }} />
+        <div style={{ flexGrow: 1 }}>
+          <Button
+            variant="contained"
+            style={{ marginLeft: "10px", marginRight: "10px" }}
+            onClick={() =>
+              alert(
+                "3D models of datasets have been built in such a way that 3D printing them is easy. Currently waiting on a 3D printer to arrive before building out this feature."
+              )
+            }
+          >
+            I want a physical model
+          </Button>
+        </div>
+      </div>
     </div>
   );
 }

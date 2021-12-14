@@ -77,6 +77,44 @@ import beforeHousingIncome12 from "../data/details/msoaCensusData/FY2012NetAnnua
 import netAnnualIncome12 from "../data/details/msoaCensusData/FY2012NetAnnualIncome.json";
 import totalIncome12 from "../data/details/msoaCensusData/FY2012TotalAnnualIncome.json";
 import footballStadium from "../data/details/distanceTo/premFootballStadiums.json";
+import f2002AorticAneurysm from "../data/details/msoaAorticAneurysm/F2002aorticaneurysmdeathsbymsoaengland_per100000.json";
+import f2003AorticAneurysm from "../data/details/msoaAorticAneurysm/F2003aorticaneurysmdeathsbymsoaengland_per100000.json";
+import f2004AorticAneurysm from "../data/details/msoaAorticAneurysm/F2004aorticaneurysmdeathsbymsoaengland_per100000.json";
+import f2005AorticAneurysm from "../data/details/msoaAorticAneurysm/F2005aorticaneurysmdeathsbymsoaengland_per100000.json";
+import f2006AorticAneurysm from "../data/details/msoaAorticAneurysm/F2006aorticaneurysmdeathsbymsoaengland_per100000.json";
+import f2007AorticAneurysm from "../data/details/msoaAorticAneurysm/F2007aorticaneurysmdeathsbymsoaengland_per100000.json";
+import f2008AorticAneurysm from "../data/details/msoaAorticAneurysm/F2008aorticaneurysmdeathsbymsoaengland_per100000.json";
+import f2009AorticAneurysm from "../data/details/msoaAorticAneurysm/F2009aorticaneurysmdeathsbymsoaengland_per100000.json";
+import f2010AorticAneurysm from "../data/details/msoaAorticAneurysm/F2010aorticaneurysmdeathsbymsoaengland_per100000.json";
+import f2011AorticAneurysm from "../data/details/msoaAorticAneurysm/F2011aorticaneurysmdeathsbymsoaengland_per100000.json";
+import f2012AorticAneurysm from "../data/details/msoaAorticAneurysm/F2012aorticaneurysmdeathsbymsoaengland_per100000.json";
+import f2013AorticAneurysm from "../data/details/msoaAorticAneurysm/F2013aorticaneurysmdeathsbymsoaengland_per100000.json";
+import f2014AorticAneurysm from "../data/details/msoaAorticAneurysm/F2014aorticaneurysmdeathsbymsoaengland_per100000.json";
+import f2015AorticAneurysm from "../data/details/msoaAorticAneurysm/F2015aorticaneurysmdeathsbymsoaengland_per100000.json";
+import f2016AorticAneurysm from "../data/details/msoaAorticAneurysm/F2016aorticaneurysmdeathsbymsoaengland_per100000.json";
+import f2017AorticAneurysm from "../data/details/msoaAorticAneurysm/F2017aorticaneurysmdeathsbymsoaengland_per100000.json";
+import m2002AorticAneurysm from "../data/details/msoaAorticAneurysm/M2002aorticaneurysmdeathsbymsoaengland.json";
+import m2003AorticAneurysm from "../data/details/msoaAorticAneurysm/M2003aorticaneurysmdeathsbymsoaengland.json";
+import m2004AorticAneurysm from "../data/details/msoaAorticAneurysm/M2004aorticaneurysmdeathsbymsoaengland.json";
+import m2005AorticAneurysm from "../data/details/msoaAorticAneurysm/M2005aorticaneurysmdeathsbymsoaengland.json";
+import m2006AorticAneurysm from "../data/details/msoaAorticAneurysm/M2006aorticaneurysmdeathsbymsoaengland.json";
+import m2007AorticAneurysm from "../data/details/msoaAorticAneurysm/M2007aorticaneurysmdeathsbymsoaengland.json";
+import m2008AorticAneurysm from "../data/details/msoaAorticAneurysm/M2008aorticaneurysmdeathsbymsoaengland.json";
+import m2009AorticAneurysm from "../data/details/msoaAorticAneurysm/M2009aorticaneurysmdeathsbymsoaengland.json";
+import m2010AorticAneurysm from "../data/details/msoaAorticAneurysm/M2010aorticaneurysmdeathsbymsoaengland.json";
+import m2011AorticAneurysm from "../data/details/msoaAorticAneurysm/M2011aorticaneurysmdeathsbymsoaengland.json";
+import m2012AorticAneurysm from "../data/details/msoaAorticAneurysm/M2012aorticaneurysmdeathsbymsoaengland.json";
+import m2013AorticAneurysm from "../data/details/msoaAorticAneurysm/M2013aorticaneurysmdeathsbymsoaengland.json";
+import m2014AorticAneurysm from "../data/details/msoaAorticAneurysm/M2014aorticaneurysmdeathsbymsoaengland.json";
+import m2015AorticAneurysm from "../data/details/msoaAorticAneurysm/M2015aorticaneurysmdeathsbymsoaengland.json";
+import m2016AorticAneurysm from "../data/details/msoaAorticAneurysm/M2016aorticaneurysmdeathsbymsoaengland.json";
+import m2017AorticAneurysm from "../data/details/msoaAorticAneurysm/M2017aorticaneurysmdeathsbymsoaengland.json";
+import diabetesAll from "../data/details/diabetesDeaths/All-deathsByDiabetes20132017.json";
+import diabetesMale from "../data/details/diabetesDeaths/Male-deathsByDiabetes20132017.json";
+import diabetesFemale from "../data/details/diabetesDeaths/Female-deathsByDiabetes20132017.json";
+
+
+
 
 const FILENAME_TO_DETAILS: {
   [k: string]: {
@@ -84,6 +122,7 @@ const FILENAME_TO_DETAILS: {
     title: string;
     description: string;
     datasetSpecificTags?: Record<string, string>;
+    src?: string; // This should not be an optional field
   };
 } = {
   "med_price_paid_00-02.obj": medPricePaid0002,
@@ -163,6 +202,41 @@ const FILENAME_TO_DETAILS: {
   "FY2012NetAnnualIncome.obj": netAnnualIncome12,
   "FY2012TotalAnnualIncome.obj": totalIncome12,
   "premFootballStadiums.obj": footballStadium,
+  "F2002aorticaneurysmdeathsbymsoaengland_per100000.obj": f2002AorticAneurysm,
+  "F2003aorticaneurysmdeathsbymsoaengland_per100000.obj": f2003AorticAneurysm,
+  "F2004aorticaneurysmdeathsbymsoaengland_per100000.obj": f2004AorticAneurysm,
+  "F2005aorticaneurysmdeathsbymsoaengland_per100000.obj": f2005AorticAneurysm,
+  "F2006aorticaneurysmdeathsbymsoaengland_per100000.obj": f2006AorticAneurysm,
+  "F2007aorticaneurysmdeathsbymsoaengland_per100000.obj": f2007AorticAneurysm,
+  "F2008aorticaneurysmdeathsbymsoaengland_per100000.obj": f2008AorticAneurysm,
+  "F2009aorticaneurysmdeathsbymsoaengland_per100000.obj": f2009AorticAneurysm,
+  "F2010aorticaneurysmdeathsbymsoaengland_per100000.obj": f2010AorticAneurysm,
+  "F2011aorticaneurysmdeathsbymsoaengland_per100000.obj": f2011AorticAneurysm,
+  "F2012aorticaneurysmdeathsbymsoaengland_per100000.obj": f2012AorticAneurysm,
+  "F2013aorticaneurysmdeathsbymsoaengland_per100000.obj": f2013AorticAneurysm,
+  "F2014aorticaneurysmdeathsbymsoaengland_per100000.obj": f2014AorticAneurysm,
+  "F2015aorticaneurysmdeathsbymsoaengland_per100000.obj": f2015AorticAneurysm,
+  "F2016aorticaneurysmdeathsbymsoaengland_per100000.obj": f2016AorticAneurysm,
+  "F2017aorticaneurysmdeathsbymsoaengland_per100000.obj": f2017AorticAneurysm,  
+  "M2002aorticaneurysmdeathsbymsoaengland.obj": m2002AorticAneurysm,
+  "M2003aorticaneurysmdeathsbymsoaengland.obj": m2003AorticAneurysm,
+  "M2004aorticaneurysmdeathsbymsoaengland.obj": m2004AorticAneurysm,
+  "M2005aorticaneurysmdeathsbymsoaengland.obj": m2005AorticAneurysm,
+  "M2006aorticaneurysmdeathsbymsoaengland.obj": m2006AorticAneurysm,
+  "M2007aorticaneurysmdeathsbymsoaengland.obj": m2007AorticAneurysm,
+  "M2008aorticaneurysmdeathsbymsoaengland.obj": m2008AorticAneurysm,
+  "M2009aorticaneurysmdeathsbymsoaengland.obj": m2009AorticAneurysm,
+  "M2010aorticaneurysmdeathsbymsoaengland.obj": m2010AorticAneurysm,
+  "M2011aorticaneurysmdeathsbymsoaengland.obj": m2011AorticAneurysm,
+  "M2012aorticaneurysmdeathsbymsoaengland.obj": m2012AorticAneurysm,
+  "M2013aorticaneurysmdeathsbymsoaengland.obj": m2013AorticAneurysm,
+  "M2014aorticaneurysmdeathsbymsoaengland.obj": m2014AorticAneurysm,
+  "M2015aorticaneurysmdeathsbymsoaengland.obj": m2015AorticAneurysm,
+  "M2016aorticaneurysmdeathsbymsoaengland.obj": m2016AorticAneurysm,
+  "M2017aorticaneurysmdeathsbymsoaengland.obj": m2017AorticAneurysm,  
+  "Female-deathsByDiabetes20132017.obj": diabetesFemale,
+  "Male-deathsByDiabetes20132017.obj": diabetesMale,
+  "All-deathsByDiabetes20132017.obj": diabetesAll,
 };
 
 // kinda hacky but...
@@ -262,12 +336,55 @@ export const MSOA_CENSUS_DATA = [
   "FY2012TotalAnnualIncome.obj",
 ];
 
+export const MSOA_AORTIC_ANEURYSM = [
+  "F2002aorticaneurysmdeathsbymsoaengland_per100000.obj",
+  "F2003aorticaneurysmdeathsbymsoaengland_per100000.obj",
+  "F2004aorticaneurysmdeathsbymsoaengland_per100000.obj",
+  "F2005aorticaneurysmdeathsbymsoaengland_per100000.obj",
+  "F2006aorticaneurysmdeathsbymsoaengland_per100000.obj",
+  "F2007aorticaneurysmdeathsbymsoaengland_per100000.obj",
+  "F2008aorticaneurysmdeathsbymsoaengland_per100000.obj",
+  "F2009aorticaneurysmdeathsbymsoaengland_per100000.obj",
+  "F2010aorticaneurysmdeathsbymsoaengland_per100000.obj",
+  "F2011aorticaneurysmdeathsbymsoaengland_per100000.obj",
+  "F2012aorticaneurysmdeathsbymsoaengland_per100000.obj",
+  "F2013aorticaneurysmdeathsbymsoaengland_per100000.obj",
+  "F2014aorticaneurysmdeathsbymsoaengland_per100000.obj",
+  "F2015aorticaneurysmdeathsbymsoaengland_per100000.obj",
+  "F2016aorticaneurysmdeathsbymsoaengland_per100000.obj",
+  "F2017aorticaneurysmdeathsbymsoaengland_per100000.obj",
+  "F2002aorticaneurysmdeathsbymsoaengland_per100000.obj",
+  "M2002aorticaneurysmdeathsbymsoaengland.obj",
+  "M2003aorticaneurysmdeathsbymsoaengland.obj",
+  "M2004aorticaneurysmdeathsbymsoaengland.obj",
+  "M2005aorticaneurysmdeathsbymsoaengland.obj",
+  "M2006aorticaneurysmdeathsbymsoaengland.obj",
+  "M2007aorticaneurysmdeathsbymsoaengland.obj",
+  "M2008aorticaneurysmdeathsbymsoaengland.obj",
+  "M2009aorticaneurysmdeathsbymsoaengland.obj",
+  "M2010aorticaneurysmdeathsbymsoaengland.obj",
+  "M2011aorticaneurysmdeathsbymsoaengland.obj",
+  "M2012aorticaneurysmdeathsbymsoaengland.obj",
+  "M2013aorticaneurysmdeathsbymsoaengland.obj",
+  "M2014aorticaneurysmdeathsbymsoaengland.obj",
+  "M2015aorticaneurysmdeathsbymsoaengland.obj",
+  "M2016aorticaneurysmdeathsbymsoaengland.obj",
+  "M2017aorticaneurysmdeathsbymsoaengland.obj",
+];
+
+export const DIABETES_DEATHS = [
+  "All-deathsByDiabetes20132017.obj", 
+  "Female-deathsByDiabetes20132017.obj",
+  "Male-deathsByDiabetes20132017.obj"
+];
+
 export type Gender = "Male" | "Female" | "All" | "NA";
 export type FileDetails = {
   filename: string;
   filepath: string;
   title: string;
   id: string;
+  src?: string;
   description: string;
   datasetSpecificTags?: Record<string, string>;
 };
@@ -281,6 +398,7 @@ export const filenameToDetails = (
     : getUrl(`/src/data/objFilesCompressed/${datasetId}/${filename}.gz`);
   const details = FILENAME_TO_DETAILS[filename];
   return {
+    src: details.src,
     id: details.idOverride ?? filename.split(".")[0],
     filename: filename,
     filepath: filepath,
@@ -328,12 +446,16 @@ enum DatasetIds {
   distanceTo = "distanceTo",
   pricePaid = "pricePaid",
   msoaCensusData = "msoaCensusData",
+  msoaAorticAneurysm = "msoaAorticAneurysm",
+  diabetesDeaths = "diabetesDeaths"
 }
 const HEATMAPS: Record<DatasetIds, string> = {
   [DatasetIds.populationDensity]: "populationDensity.png",
   [DatasetIds.distanceTo]: "mcDonalds.png",
   [DatasetIds.pricePaid]: "med_price_paid_09-11.png",
   [DatasetIds.msoaCensusData]: "FY2016NetIncomeAfterHousing.png",
+  [DatasetIds.msoaAorticAneurysm]: "M2015aorticaneurysmdeathsbymsoaengland.png",
+  [DatasetIds.diabetesDeaths]: "All-deathsByDiabetes20132017.png",
 };
 Object.keys(HEATMAPS).forEach((k) => {
   const key = k as keyof typeof HEATMAPS;
@@ -376,7 +498,7 @@ export const DATASETS: Dataset[] = [
   },
   {
     id: DatasetIds.msoaCensusData,
-    title: "Income Data",
+    title: "Census Data",
     objs: () =>
       MSOA_CENSUS_DATA.map(
         (fn) => filenameToDetails(fn, DatasetIds.msoaCensusData) // TODO
@@ -384,5 +506,27 @@ export const DATASETS: Dataset[] = [
     heatMapSource: HEATMAPS[DatasetIds.msoaCensusData],
     listPageImageCaption: "TODO",
     rightNavDefaultSettings: { colorExponent: 2.34, cameraRadius: 21.6 },
+  },
+  {
+    id: DatasetIds.msoaAorticAneurysm,
+    title: "Aortic Aneurysms per 100k people",
+    objs: () =>
+      MSOA_AORTIC_ANEURYSM.map(
+        (fn) => filenameToDetails(fn, DatasetIds.msoaAorticAneurysm)
+      ),
+    heatMapSource: HEATMAPS[DatasetIds.msoaAorticAneurysm],
+    listPageImageCaption: "Example shown for Males in 2015",
+    rightNavDefaultSettings: { colorExponent: 2, cameraRadius: 31.25 },
+  },
+  {
+    id: DatasetIds.diabetesDeaths,
+    title: "Diabetes Deaths per 100k people",
+    objs: () =>
+      DIABETES_DEATHS.map(
+        (fn) => filenameToDetails(fn, DatasetIds.diabetesDeaths)
+      ),
+    heatMapSource: HEATMAPS[DatasetIds.msoaAorticAneurysm],
+    listPageImageCaption: "Across All Genders",
+    rightNavDefaultSettings: { colorExponent: 2.5, cameraRadius: 31.25 },
   },
 ];

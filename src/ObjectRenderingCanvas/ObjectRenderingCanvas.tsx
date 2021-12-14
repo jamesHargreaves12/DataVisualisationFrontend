@@ -53,7 +53,7 @@ export default function ObjectRenderingCanvas({
   const canvasLoaded = canvasStatuses[canvasId] === CanvasStatus.Loaded;
   const descriptionRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    console.log("Unloaded", canvasId);
+    // console.log("Unloaded", canvasId);
     reportCanvasStatusChange(canvasId, CanvasStatus.Unloaded);
     const canvasDomElem = getNewCanvas(canvasId, wrapperId, width, height);
     sendAddNewScene(
@@ -94,13 +94,26 @@ export default function ObjectRenderingCanvas({
       {!canvasLoaded && <LoadingIndicator width={width} height={height} />}
       {objFileDetails.description && includeDescription && (
         <div
-          ref={descriptionRef}
           style={{
             backgroundColor: CSSColours.Primary5,
-            paddingTop: "10px",
             textAlign: "left",
+            paddingLeft: "10px",
           }}
-        ></div>
+        >
+          <div ref={descriptionRef}></div>{" "}
+          {/*TODO change to text so don't require this ref*/}
+          <p>
+            This visualisation was produced from the data{" "}
+            <a href={objFileDetails.src ?? "TODO"}>here</a>
+          </p>
+          <p>
+            For more information, the source code that created this dataset is
+            here{" "}
+            <a href="https://github.com/jamesHargreaves12/DataVis_python">
+              https://github.com/jamesHargreaves12/DataVis_python
+            </a>
+          </p>
+        </div>
       )}
     </div>
   );

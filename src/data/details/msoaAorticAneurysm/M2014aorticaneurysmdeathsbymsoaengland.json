@@ -1,0 +1,10 @@
+{
+    "idOverride": "2014-male",
+    "title": "2014 male",
+    "src": "https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/adhocs/009651deathsfromaorticaneurysmbymiddlelayersuperoutputareamsoaengland2002to2017occurrences",
+    "description": "Number of Aortic Aneurysms that occurred in males in 2014 per 100,000 people.",
+    "datasetSpecificTags": {
+        "Gender": "male",
+        "Year": "2014"
+    }
+}
