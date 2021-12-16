@@ -1,4 +1,7 @@
 {
-  "title": "Tesco",
-  "description": "<p>The data being visualised here is the location of Tesco stores. The height of each pixel represents the distance to the closest Tesco store as the crow flies. </p> <p>The location of the Tesco stores were scraped from the API that powers the Tesco Store Locator (<a href='https://www.tesco.com/store-locator'>https://www.tesco.com/store-locator</a>). The API was last scraped for updates on 31st May 2021. For more information, the source code that created this dataset is here <a href='https://github.com/jamesHargreaves12/DataVis_python'>https://github.com/jamesHargreaves12/DataVis_python</a>.</p>"
+    "title": "Tesco",
+    "src": "https://www.tesco.com/store-locator",
+    "description": "The data being visualised here is the location of Tesco stores. The height of each pixel represents the distance to the closest Tesco store as the crow flies. The API was last scraped for updates on 31st May 2021.",
+    "min": 0.0,
+    "max": 2.27
 }

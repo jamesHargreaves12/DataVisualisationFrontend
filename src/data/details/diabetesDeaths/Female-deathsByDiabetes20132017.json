@@ -5,5 +5,7 @@
     "description": "The number of Female deaths that were attributed to diabetes between 2013-2017 per 100,000 people.",
     "datasetSpecificTags": {
         "Gender": "Female"
-    }
+    },
+    "min": 0.0,
+    "max": 59.39
 }

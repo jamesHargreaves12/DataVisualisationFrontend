@@ -1,9 +1,10 @@
 {
     "idOverride": "Male20-25",
     "title": "Male 20 - 25",
-    "description": "TODO",
+    "src": "https://eprints.soton.ac.uk/442334/",
+    "description": "Gridded population density for Males aged 20 - 25 in 2020.",
     "datasetSpecificTags": {
-        "Genders": "Male",
+        "Gender": "Male",
         "Age Ranges": "20 - 25"
     }
 }

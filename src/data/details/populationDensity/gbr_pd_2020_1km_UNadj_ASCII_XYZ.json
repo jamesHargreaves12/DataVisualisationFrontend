@@ -1,9 +1,10 @@
 {
-    "idOverride": "wholePop",
-    "title": "Whole Population",
+    "idOverride": "all",
+    "title": "All",
+    "src": "TODO",
     "description": "TODO",
     "datasetSpecificTags": {
-        "Genders": "All",
+        "Gender": "All",
         "Age Ranges": "All"
     }
 }

@@ -1,0 +1,9 @@
+{
+    "title": "Total Annual Income - 2018",
+    "src": "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/smallareaincomeestimatesformiddlelayersuperoutputareasenglandandwales",
+    "description": "TODO",
+    "datasetSpecificTags": {
+        "Ending Year": "2018",
+        "Type": "Total Annual Income"
+    }
+}

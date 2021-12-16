@@ -1,0 +1,12 @@
+{
+    "idOverride": "2013-Female",
+    "title": "2013 Female",
+    "src": "https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/adhocs/009651deathsfromaorticaneurysmbymiddlelayersuperoutputareamsoaengland2002to2017occurrences",
+    "description": "Number of Aortic Aneurysms that occurred in Females in 2013 per 100,000 people.",
+    "datasetSpecificTags": {
+        "Gender": "Female",
+        "Year": "2013"
+    },
+    "min": 0.0,
+    "max": 20.21
+}

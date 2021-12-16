@@ -1,8 +1,0 @@
-{
-    "title": "Mean 1997 - 1999",
-    "description": "<p>The data being visualised here is the mean house price in England and Wales between 1997 and 1999. The height of each pixel represents the median price for properties sold in that area </p> <p>The house price data was taken from <a href='https://data.gov.uk/dataset/price-paid-data'>https://data.gov.uk/dataset/price-paid-data</a>. For more information, the source code that created this dataset is here <a href='https://github.com/jamesHargreaves12/DataVis_python'>https://github.com/jamesHargreaves12/DataVis_python</a>.</p>",
-    "datasetSpecificTags": {
-        "Aggregating Function": "Mean",
-        "Years": "1997 - 1999"
-    }
-}

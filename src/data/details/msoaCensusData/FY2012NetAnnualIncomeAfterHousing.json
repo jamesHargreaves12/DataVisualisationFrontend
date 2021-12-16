@@ -1,8 +1,9 @@
 {
-    "title": "2012 - Net Income After Housing",
+    "title": "Net Annual Income After Housing - 2012",
+    "src": "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/smallareaincomeestimatesformiddlelayersuperoutputareasenglandandwales",
     "description": "TODO",
     "datasetSpecificTags": {
-        "End Date": "2012",
-        "Type": "Net Income After Housing"
+        "Ending Year": "2012",
+        "Type": "Net Annual Income After Housing"
     }
 }

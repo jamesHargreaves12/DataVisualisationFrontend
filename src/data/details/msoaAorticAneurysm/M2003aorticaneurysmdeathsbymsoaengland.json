@@ -6,5 +6,7 @@
     "datasetSpecificTags": {
         "Gender": "male",
         "Year": "2003"
-    }
+    },
+    "min": 0.0,
+    "max": 53.22
 }

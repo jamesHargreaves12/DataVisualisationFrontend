@@ -1,9 +1,10 @@
 {
     "idOverride": "Male80+",
     "title": "Male 80+",
-    "description": "TODO",
+    "src": "https://eprints.soton.ac.uk/442334/",
+    "description": "Gridded population density for Males aged 80+ in 2020.",
     "datasetSpecificTags": {
-        "Genders": "Male",
+        "Gender": "Male",
         "Age Ranges": "80+"
     }
 }

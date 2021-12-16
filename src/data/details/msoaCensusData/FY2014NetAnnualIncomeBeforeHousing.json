@@ -1,8 +1,9 @@
 {
-    "title": "2014 - Net Income Before Housing",
+    "title": "Net Annual Income Before Housing - 2014",
+    "src": "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/smallareaincomeestimatesformiddlelayersuperoutputareasenglandandwales",
     "description": "TODO",
     "datasetSpecificTags": {
-        "End Date": "2014",
-        "Type": "Net Income Before Housing"
+        "Ending Year": "2014",
+        "Type": "Net Annual Income Before Housing"
     }
 }

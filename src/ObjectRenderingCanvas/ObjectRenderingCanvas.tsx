@@ -100,15 +100,18 @@ export default function ObjectRenderingCanvas({
             paddingLeft: "10px",
           }}
         >
-          <div ref={descriptionRef}></div>{" "}
-          {/*TODO change to text so don't require this ref*/}
+          <div ref={descriptionRef}></div>  {/*TODO change to text so don't require this ref*/}
+
+          
+          {objFileDetails.min != undefined && objFileDetails.max != undefined && (
+            <>The minimum value in the data is {objFileDetails.min} and the maximum value is {objFileDetails.max}. </>
+          )}
           <p>
             This visualisation was produced from the data{" "}
             <a href={objFileDetails.src ?? "TODO"}>here</a>
           </p>
           <p>
-            For more information, the source code that created this dataset is
-            here{" "}
+            For more information, the source code that created this 3D shape from the raw dataset is here{" "}
             <a href="https://github.com/jamesHargreaves12/DataVis_python">
               https://github.com/jamesHargreaves12/DataVis_python
             </a>

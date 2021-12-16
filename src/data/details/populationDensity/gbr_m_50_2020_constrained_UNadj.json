@@ -1,9 +1,10 @@
 {
     "idOverride": "Male50-55",
     "title": "Male 50 - 55",
-    "description": "TODO",
+    "src": "https://eprints.soton.ac.uk/442334/",
+    "description": "Gridded population density for Males aged 50 - 55 in 2020.",
     "datasetSpecificTags": {
-        "Genders": "Male",
+        "Gender": "Male",
         "Age Ranges": "50 - 55"
     }
 }

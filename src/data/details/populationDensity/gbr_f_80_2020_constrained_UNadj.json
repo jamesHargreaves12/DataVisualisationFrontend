@@ -1,9 +1,10 @@
 {
     "idOverride": "Female80+",
     "title": "Female 80+",
-    "description": "TODO",
+    "src": "https://eprints.soton.ac.uk/442334/",
+    "description": "Gridded population density for Females aged 80+ in 2020.",
     "datasetSpecificTags": {
-        "Genders": "Female",
+        "Gender": "Female",
         "Age Ranges": "80+"
     }
 }

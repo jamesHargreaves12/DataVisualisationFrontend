@@ -1,0 +1,11 @@
+{
+    "title": "2018 - 2020 (Mean)",
+    "src": "https://data.gov.uk/dataset/price-paid-data",
+    "description": "The data being visualised here is the mean house price in England and Wales between 2018 and 2020. The height of each pixel represents the mean price for properties sold in that area.",
+    "min": 0.0,
+    "max": 13666598.16,
+    "datasetSpecificTags": {
+        "Aggregating Function": "Mean",
+        "When": "2018 - 2020"
+    }
+}

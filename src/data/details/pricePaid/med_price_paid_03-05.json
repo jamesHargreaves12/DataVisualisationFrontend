@@ -1,0 +1,11 @@
+{
+    "title": "2003 - 2005 (Median)",
+    "src": "https://data.gov.uk/dataset/price-paid-data",
+    "description": "The data being visualised here is the median house price in England and Wales between 2003 and 2005. The height of each pixel represents the median price for properties sold in that area.",
+    "min": 0.0,
+    "max": 900000.0,
+    "datasetSpecificTags": {
+        "Aggregating Function": "Median",
+        "When": "2003 - 2005"
+    }
+}

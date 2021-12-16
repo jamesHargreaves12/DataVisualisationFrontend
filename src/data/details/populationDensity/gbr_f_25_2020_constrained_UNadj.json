@@ -1,9 +1,10 @@
 {
     "idOverride": "Female25-30",
     "title": "Female 25 - 30",
-    "description": "TODO",
+    "src": "https://eprints.soton.ac.uk/442334/",
+    "description": "Gridded population density for Females aged 25 - 30 in 2020.",
     "datasetSpecificTags": {
-        "Genders": "Female",
+        "Gender": "Female",
         "Age Ranges": "25 - 30"
     }
 }

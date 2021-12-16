@@ -1,0 +1,11 @@
+{
+    "title": "1997 - 1999 (Median)",
+    "src": "https://data.gov.uk/dataset/price-paid-data",
+    "description": "The data being visualised here is the median house price in England and Wales between 1997 and 1999. The height of each pixel represents the median price for properties sold in that area.",
+    "min": 0.0,
+    "max": 412500.0,
+    "datasetSpecificTags": {
+        "Aggregating Function": "Median",
+        "When": "1997 - 1999"
+    }
+}
