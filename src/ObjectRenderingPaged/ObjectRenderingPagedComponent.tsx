@@ -10,9 +10,23 @@ import { getCurrentPageDetails, useCardCellLayout } from "../util";
 import { sendRemoveAllScenes } from "../OffscreenCanvasMiddleware";
 import FilterBar, { FacetFilterProps } from "../FiltersBar/FilterBar";
 import RightNav from "../RightNav/RightNav";
-import TileDisplay from "../TileDisplay/TileDisplay";
+import TileDisplay, { TileComponent } from "../TileDisplay/TileDisplay";
 import renderingSettingsContext from "../RenderingContext/RenderingContext";
 import CSSColours from "../CSSColours";
+
+const FileDetailsTile: TileComponent<FileDetails> = ({cellNumber, tileDetails}) => {
+  const canvasId = `canvas-${cellNumber}`;
+  const { datasetId } = useParams<{ datasetId: string }>();
+  return (
+    <ObjectRenderingCell
+      canvasId={canvasId}
+      objFileDetails={tileDetails}
+      datasetId={datasetId}
+      key={canvasId}
+    />
+  );
+}
+
 
 export default function ObjectRenderingPagedComponent() {
   const {
@@ -31,7 +45,7 @@ export default function ObjectRenderingPagedComponent() {
   const { setRotating } = useContext(renderingSettingsContext);
   const { datasetId } = useParams<{ datasetId: string }>();
   const dataset = DATASETS.find((d) => d.id === datasetId);
-  if (!dataset) throw new Error("Unrecognised dataset"); // TODO handle this gracefully
+  if (!dataset) throw new Error("Unrecognised dataset"); 
   const unfilteredFileDetails = dataset.objs();
   const filteredFiles = getFilteredFiles(
     unfilteredFileDetails,
@@ -63,19 +77,7 @@ export default function ObjectRenderingPagedComponent() {
     (acc, cur) => acc + cur.length,
     0
   );
-  // TODO why isn't this just a seperate component?
-  const renderTile = (cellNumber: number, tileDetails: FileDetails) => {
-    const canvasId = `canvas-${cellNumber}`;
-    return (
-      <ObjectRenderingCell
-        canvasId={canvasId}
-        objFileDetails={tileDetails}
-        datasetId={datasetId}
-        key={canvasId}
-      />
-    );
-  };
-
+ 
   const facetFilterDetails: Omit<
     FacetFilterProps,
     "possibleValues"
@@ -103,7 +105,6 @@ export default function ObjectRenderingPagedComponent() {
         />
         <TileDisplay
           groupedTileDetails={groupedFiles}
-          renderTile={renderTile}
           setPage={(page: number) => {
             setRotating(false);
             sendRemoveAllScenes();
@@ -111,6 +112,7 @@ export default function ObjectRenderingPagedComponent() {
           }}
           currentPage={currentPage}
           numberOfPages={numberOfPages}
+          TileComponent={FileDetailsTile}
         />
       </div>
       <div

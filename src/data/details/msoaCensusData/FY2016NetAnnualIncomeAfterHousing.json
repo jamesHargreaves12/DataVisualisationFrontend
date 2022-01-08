@@ -1,9 +1,9 @@
 {
-    "title": "Net Annual Income After Housing - 2016",
+    "title": "Net Annual Income After Housing 2014 - 2016",
     "src": "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/smallareaincomeestimatesformiddlelayersuperoutputareasenglandandwales",
-    "description": "TODO",
+    "description": "Estimates of Net Annual Income After Housing per household between years 2014 and 2016.",
     "datasetSpecificTags": {
-        "Ending Year": "2016",
+        "Time range": "2014 - 2016",
         "Type": "Net Annual Income After Housing"
     }
 }

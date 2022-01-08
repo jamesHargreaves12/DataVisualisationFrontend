@@ -1,9 +1,9 @@
 {
-    "title": "Total Annual Income - 2012",
+    "title": "Total Annual Income 2010 - 2012",
     "src": "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/smallareaincomeestimatesformiddlelayersuperoutputareasenglandandwales",
-    "description": "TODO",
+    "description": "Estimates of Total Annual Income per household between years 2010 and 2012.",
     "datasetSpecificTags": {
-        "Ending Year": "2012",
+        "Time range": "2010 - 2012",
         "Type": "Total Annual Income"
     }
 }

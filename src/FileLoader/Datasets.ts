@@ -122,7 +122,7 @@ const FILENAME_TO_DETAILS: {
     title: string;
     description: string;
     datasetSpecificTags?: Record<string, string>;
-    src?: string; // This should not be an optional field
+    src: string;
     min?: number; // This should not be an optional field
     max?: number; // This should not be an optional field
   };
@@ -385,7 +385,7 @@ export type FileDetails = {
   filepath: string;
   title: string;
   id: string;
-  src?: string;
+  src: string;
   description: string;
   datasetSpecificTags?: Record<string, string>;
   min?: number;
@@ -441,7 +441,7 @@ export type Dataset = {
   id: DatasetIds;
   title: string;
   objs: () => FileDetails[];
-  listPageImageCaption: string;
+  listPageImageCaption: string; // Currently unused but left in as it makes it clear which visualisation gives rise to the heat map
   heatMapSource: string;
   rightNavDefaultSettings: RightNavSettings;
 };
@@ -476,7 +476,7 @@ export const DATASETS: Dataset[] = [
         filenameToDetails(fn, DatasetIds.populationDensity)
       ),
     heatMapSource: HEATMAPS[DatasetIds.populationDensity],
-    listPageImageCaption: "Visualisation of population density data", //TODO improve
+    listPageImageCaption: "Population density of all age groups in the UK",
     rightNavDefaultSettings: {},
   },
   {
@@ -487,7 +487,7 @@ export const DATASETS: Dataset[] = [
         filenameToDetails(fn, DatasetIds.distanceTo)
       ),
     heatMapSource: HEATMAPS[DatasetIds.distanceTo],
-    listPageImageCaption: "Example shown for McDonald's", // TODO
+    listPageImageCaption: "Example shown is the distance to a McDonald's restaurant",
     rightNavDefaultSettings: { colorExponent: 0.5 },
   },
   {
@@ -495,10 +495,10 @@ export const DATASETS: Dataset[] = [
     title: "House Prices",
     objs: () =>
       PRICE_PAID_FILENAMES.map(
-        (fn) => filenameToDetails(fn, DatasetIds.pricePaid) // TODO
+        (fn) => filenameToDetails(fn, DatasetIds.pricePaid)
       ),
     heatMapSource: HEATMAPS[DatasetIds.pricePaid],
-    listPageImageCaption: "TODO",
+    listPageImageCaption: "Median house priced 2009-2011",
     rightNavDefaultSettings: { cameraRadius: 21.6, colorExponent: 1.2 },
   },
   {
@@ -506,10 +506,10 @@ export const DATASETS: Dataset[] = [
     title: "Census Data",
     objs: () =>
       MSOA_CENSUS_DATA.map(
-        (fn) => filenameToDetails(fn, DatasetIds.msoaCensusData) // TODO
+        (fn) => filenameToDetails(fn, DatasetIds.msoaCensusData)
       ),
     heatMapSource: HEATMAPS[DatasetIds.msoaCensusData],
-    listPageImageCaption: "TODO",
+    listPageImageCaption: "Net Income after housing in 2014-2016",
     rightNavDefaultSettings: { colorExponent: 2.34, cameraRadius: 21.6 },
   },
   {

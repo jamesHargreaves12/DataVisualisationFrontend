@@ -7,7 +7,7 @@ import { getRenderSettings, registerSceneForRendering } from "./renderer";
 import { OffscreenEventArgs } from "../EventTypes";
 import { sendBackMessage } from "../OffScreenCanvas.worker";
 import { CompressedObjLoader } from "./helpers/CompressedObjLoader";
-import { isLocalDev } from "../../util";
+import { INITIAL_RENDERING_SETTINGS, isLocalDev } from "../../util";
 import { applyHeightCap, heightCapState } from "./changeHeightCap";
 import { setColourFromHeight } from "./helpers/TextureCoords";
 
@@ -22,21 +22,17 @@ export const addNewScene = async ({
   canvasWidth,
   materialImageLocation,
 }: OffscreenEventArgs["addNewScene"]) => {
-  // TODO send these over
   const { zAxisAngle } = getRenderSettings();
-  const fov = 35;
-  const intensityAmb = 1;
-  const initialDegreesXY = -10;
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(
-    fov,
+    INITIAL_RENDERING_SETTINGS.FIELD_OF_VIEW_DEGREES,
     canvasWidth / canvasHeight,
-    0.1,
-    1000
+    INITIAL_RENDERING_SETTINGS.CAMERA_NEAR_CUT_OFF,
+    INITIAL_RENDERING_SETTINGS.CAMERA_FAR_CUT_OFF
   );
   scene.background = new THREE.Color(0x938e94);
-  const ambientLight = new THREE.AmbientLight(0x404040, intensityAmb); // soft white light
+  const ambientLight = new THREE.AmbientLight(0x404040, INITIAL_RENDERING_SETTINGS.INTENSITY_AMBIENT_LIGHT); // soft white light
   scene.add(ambientLight);
   // Setup HemisphereLight light
   const skyColor = 0xb1e1ff; // light blue
@@ -77,8 +73,8 @@ export const addNewScene = async ({
 
     const { x, y, upX, upY } = getNextCameraSettings(
       new Vector3(
-        -cameraRadius * Math.sin((Math.PI * initialDegreesXY) / 180),
-        -cameraRadius * Math.cos((Math.PI * initialDegreesXY) / 180),
+        -cameraRadius * Math.sin((Math.PI * INITIAL_RENDERING_SETTINGS.INITIAL_DEGREES_XY_PLANE) / 180),
+        -cameraRadius * Math.cos((Math.PI * INITIAL_RENDERING_SETTINGS.INITIAL_DEGREES_XY_PLANE) / 180),
         zPos
       ),
       0,

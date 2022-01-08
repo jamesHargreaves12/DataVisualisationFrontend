@@ -1,10 +1,12 @@
 {
-    "idOverride": "all",
-    "title": "All",
-    "src": "TODO",
-    "description": "TODO",
+    "idOverride": "All",
+    "title": "Whole population",
+    "src": "https://www.worldpop.org/geodata",
+    "description": "Estimated population density  per grid-cell in 2020. Numbers were adjusted to match the corresponding official United Nations population estimates that have been prepared by the Population Division of the Department of Economic and Social Affairs of the United Nations Secretariat.",
     "datasetSpecificTags": {
-        "Gender": "All",
-        "Age Ranges": "All"
-    }
+        "Age Ranges": "All",
+        "Gender": "All"
+    },
+    "min": 0.0343085093931718,
+    "max": 16160.382061428494
 }

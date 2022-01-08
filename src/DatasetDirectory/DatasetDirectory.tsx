@@ -7,15 +7,9 @@ import {
 } from "../util";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import TileDisplay from "../TileDisplay/TileDisplay";
+import TileDisplay, {TileComponent} from "../TileDisplay/TileDisplay";
 
-export default function DatasetDirectory() {
-  const {
-    cellsPerRow,
-    horizontalPadding,
-    rowCount,
-    verticalPadding,
-  } = useCardCellLayout(false);
+const DatasetTile: TileComponent<Dataset> = ({cellNumber, tileDetails}) => {
   const {
     widthCell,
     heightCell,
@@ -24,6 +18,38 @@ export default function DatasetDirectory() {
     cellTitleHeight,
   } = PAGE_LAYOUT_CONFIG;
 
+  return (
+    <Link to={getUrl(`/dataset/${tileDetails.id}`)} key={tileDetails.id}>
+      <div
+        style={{
+          margin: cellMarginSize,
+          padding: cellPaddingSize,
+          backgroundColor: CSSColours.Primary5,
+          borderRadius: 5,
+        }}
+      >
+        <div style={{ height: cellTitleHeight, color: "black" }}>
+          {tileDetails.title}
+        </div>
+        <div style={{ width: widthCell, height: heightCell }}>
+          <img
+            src={tileDetails.heatMapSource}
+            style={{ maxHeight: heightCell, maxWidth: widthCell }}
+          />
+        </div>
+      </div>
+    </Link>
+  );
+};
+
+
+export default function DatasetDirectory() {
+  const {
+    cellsPerRow,
+    horizontalPadding,
+    rowCount,
+    verticalPadding,
+  } = useCardCellLayout(false);
   const [currentPage, setCurrentPage] = useState(0);
 
   const { numberOfPages, getGroupsForPage } = getCurrentPageDetails(
@@ -32,30 +58,6 @@ export default function DatasetDirectory() {
     cellsPerRow
   );
   const groupedDatasets = getGroupsForPage(currentPage);
-  const renderTile = (cellNumber: number, tileDetails: Dataset) => {
-    return (
-      <Link to={getUrl(`/dataset/${tileDetails.id}`)} key={tileDetails.id}>
-        <div
-          style={{
-            margin: cellMarginSize,
-            padding: cellPaddingSize,
-            backgroundColor: CSSColours.Primary5,
-            borderRadius: 5,
-          }}
-        >
-          <div style={{ height: cellTitleHeight, color: "black" }}>
-            {tileDetails.title}
-          </div>
-          <div style={{ width: widthCell, height: heightCell }}>
-            <img
-              src={tileDetails.heatMapSource}
-              style={{ maxHeight: heightCell, maxWidth: widthCell }}
-            />
-          </div>
-        </div>
-      </Link>
-    );
-  };
 
   return (
     <div
@@ -66,7 +68,7 @@ export default function DatasetDirectory() {
         setPage={setCurrentPage}
         currentPage={currentPage}
         numberOfPages={numberOfPages}
-        renderTile={renderTile}
+        TileComponent={DatasetTile}
       />
     </div>
   );

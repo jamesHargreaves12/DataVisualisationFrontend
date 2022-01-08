@@ -1,9 +1,9 @@
 {
-    "title": "Net Annual Income Before Housing - 2018",
+    "title": "Net Annual Income Before Housing 2016 - 2018",
     "src": "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/earningsandworkinghours/datasets/smallareaincomeestimatesformiddlelayersuperoutputareasenglandandwales",
-    "description": "TODO",
+    "description": "Estimates of Net Annual Income Before Housing per household between years 2016 and 2018.",
     "datasetSpecificTags": {
-        "Ending Year": "2018",
+        "Time range": "2016 - 2018",
         "Type": "Net Annual Income Before Housing"
     }
 }

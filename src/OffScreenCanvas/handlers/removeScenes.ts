@@ -10,6 +10,7 @@ import {
   cancelledLoadingFilepaths,
   currentlyLoadingFilepaths,
 } from "./addNewScene";
+import { heightCapState } from "./changeHeightCap";
 
 const cleanUpScene = (scene: THREE.Scene) => {
   scene.children.forEach((child) => {
@@ -17,7 +18,6 @@ const cleanUpScene = (scene: THREE.Scene) => {
       cleanUpGroup(child);
       scene.remove(child);
     }
-    // TODO more here
   });
 };
 
@@ -47,6 +47,7 @@ export const removeAllScenes = () => {
     ctx.fillStyle = "grey";
     ctx.fillRect(0, 0, canvasWidth, canvasHeight);
     removeSceneFromRendering(id);
+    delete heightCapState.originalHeights[id]
   });
 };
 

@@ -13,7 +13,9 @@ function sendMessage(data: MessageToWorker, transfer: Transferable[] = []) {
   worker.postMessage(data, transfer);
 }
 
-// TODO why do we do this?
+// We currently have a requirement for a canvas to exist for us to setup the off screen renderer. 
+// This canvas is continually painted and the result projected onto the remaining canvases
+// So we set up a hidden canvas here
 const canvas = document.createElement("canvas");
 document.body.appendChild(canvas);
 canvas.style.width = `100px`;

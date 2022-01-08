@@ -6,7 +6,6 @@ type LoadingIndicatorProps = {
   height: number;
 };
 
-// TODO remove props
 export default function LoadingIndicator({
   width,
   height,

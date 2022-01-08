@@ -33,8 +33,7 @@ const handlers: OffscreenEventHandlers = {
 };
 
 self.onmessage = async function ({ data }: { data: MessageToWorker }) {
-  // console.log("recieve", data.type);
-  // @ts-ignore This does type I am not sure why ts doesn't recognise it TODO
+  // @ts-ignore This does type but because data.type is considered a union
   handlers[data.type](data);
 };
 

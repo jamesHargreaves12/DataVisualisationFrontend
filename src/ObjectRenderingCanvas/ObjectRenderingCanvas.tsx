@@ -51,7 +51,6 @@ export default function ObjectRenderingCanvas({
     renderingSettingsContext
   );
   const canvasLoaded = canvasStatuses[canvasId] === CanvasStatus.Loaded;
-  const descriptionRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     // console.log("Unloaded", canvasId);
     reportCanvasStatusChange(canvasId, CanvasStatus.Unloaded);
@@ -69,11 +68,6 @@ export default function ObjectRenderingCanvas({
       sendRemoveScene(canvasId, objFileDetails.filepath);
     };
   }, [objFileDetails.filepath]);
-
-  useEffect(() => {
-    if (descriptionRef.current)
-      descriptionRef.current.innerHTML = objFileDetails.description;
-  }, []);
 
   return (
     <div
@@ -100,15 +94,14 @@ export default function ObjectRenderingCanvas({
             paddingLeft: "10px",
           }}
         >
-          <div ref={descriptionRef}></div>  {/*TODO change to text so don't require this ref*/}
-
+          <p>{objFileDetails.description}</p>
           
           {objFileDetails.min != undefined && objFileDetails.max != undefined && (
-            <>The minimum value in the data is {objFileDetails.min} and the maximum value is {objFileDetails.max}. </>
+            <p>The minimum value in the data is {objFileDetails.min} and the maximum value is {objFileDetails.max}. </p>
           )}
           <p>
             This visualisation was produced from the data{" "}
-            <a href={objFileDetails.src ?? "TODO"}>here</a>
+            <a href={objFileDetails.src}>here</a>.
           </p>
           <p>
             For more information, the source code that created this 3D shape from the raw dataset is here{" "}

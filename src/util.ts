@@ -76,6 +76,18 @@ export const PAGE_LAYOUT_CONFIG = {
   cellTitleHeight: 25,
 };
 
+export const INITIAL_RENDERING_SETTINGS = {
+  HEIGHT_CAP_PERCENT: 100,
+  ROTATION_SPEED: 1,
+  Z_AXIS_ANGLE: 55,
+  CAMERA_RADIUS: 40,
+  FIELD_OF_VIEW_DEGREES: 35,
+  INTENSITY_AMBIENT_LIGHT: 1,
+  INITIAL_DEGREES_XY_PLANE: -10,
+  CAMERA_NEAR_CUT_OFF: 0.1,
+  CAMERA_FAR_CUT_OFF: 1000
+}
+
 export const useWindowSize = () => {
   const [windowSize, setWindowSize] = useState<{
     width: number | undefined;
@@ -109,13 +121,14 @@ export const useWindowSize = () => {
 export const useContentLayout = (withRightNav: boolean) => {
   const windowSize = useWindowSize();
   if (!windowSize.width || !windowSize.height) {
+    // IS 0 the correct value here rather some value indicating an explicit no size? Will leave as is for now
     return {
-      contentAreaWidth: 0, // TODO better informed defaults
+      contentAreaWidth: 0,
       contentAreaHeight: 0,
     };
   }
 
-  const { rightNavWidth, topNavBarHeight } = PAGE_LAYOUT_CONFIG; // TODO split this
+  const { rightNavWidth, topNavBarHeight } = PAGE_LAYOUT_CONFIG;
   const contentAreaWidth =
     windowSize.width - (withRightNav ? rightNavWidth : 0);
   const contentAreaHeight = windowSize.height - topNavBarHeight;

@@ -4,7 +4,6 @@ import React from "react";
 import "./App.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ObjectRenderingPagedComponent from "./ObjectRenderingPaged/ObjectRenderingPagedComponent";
-import "./tmp/prototypes.js";
 import { PAGE_LAYOUT_CONFIG } from "./util";
 import { Switch, Route, useParams, Redirect } from "react-router-dom";
 import DatasetDirectory from "./DatasetDirectory/DatasetDirectory";
@@ -55,7 +54,7 @@ function App() {
           paddingTop: "60px", //to encounter header
         }}
       >
-        {/*todo a bit of a hack to get the routing to work locally and on ghpages easily */}
+        {/*a bit of a hack to get the routing to work locally and on ghpages easily */}
         <Switch>
           <Route
             path={"/DataVisualisationFrontend/"}

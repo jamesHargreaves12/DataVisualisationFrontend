@@ -19,8 +19,6 @@ export type OffscreenEventArgs = {
   changeColourPower: { power: number };
 };
 
-// TODO I'm think this adding significant latency the first load time - I think this is fixed.
-// Will leave comment for now but in the future I will remove it if I haven't seen the problem resurface
 export type ValueOf<T> = T[keyof T];
 export type MessageToWorker = ValueOf<
   {

@@ -1,4 +1,4 @@
-import { getDebouncedPrint } from "../../util";
+import { getDebouncedPrint, INITIAL_RENDERING_SETTINGS } from "../../util";
 import {
   getAveragePosition,
   getNextCameraSettings,
@@ -17,12 +17,12 @@ export type SceneElement = {
 
 const sceneElements: Record<string, SceneElement> = {};
 const prevRenderTime: Record<string, number> = {};
-// These values will be almost immediately overwritten so do not treat the following values as the default values - see RightNav.tsx
+// These values will be almost immediately overwritten but since both here and RightNav read from the same defaults it won't result in a rerender
 const renderSettings = {
   shouldRotate: false,
-  rotationSpeed: 1,
-  zAxisAngle: 55,
-  cameraRadius: 40,
+  rotationSpeed: INITIAL_RENDERING_SETTINGS.ROTATION_SPEED,
+  zAxisAngle: INITIAL_RENDERING_SETTINGS.Z_AXIS_ANGLE,
+  cameraRadius: INITIAL_RENDERING_SETTINGS.CAMERA_RADIUS,
 };
 
 export const getRenderSettings = () => ({ ...renderSettings });

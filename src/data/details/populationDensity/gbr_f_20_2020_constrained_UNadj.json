@@ -1,10 +1,12 @@
 {
     "idOverride": "Female20-25",
     "title": "Female 20 - 25",
-    "src": "https://eprints.soton.ac.uk/442334/",
-    "description": "Gridded population density for Females aged 20 - 25 in 2020.",
+    "src": "https://www.worldpop.org/geodata",
+    "description": "Estimated population density for Females aged 20 - 25 per grid-cell in 2020. Numbers were adjusted to match the corresponding official United Nations population estimates that have been prepared by the Population Division of the Department of Economic and Social Affairs of the United Nations Secretariat.",
     "datasetSpecificTags": {
-        "Gender": "Female",
-        "Age Ranges": "20 - 25"
-    }
+        "Age Ranges": "20 - 25",
+        "Gender": "Female"
+    },
+    "min": 0.0,
+    "max": 3.426013592375372
 }

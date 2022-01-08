@@ -15,7 +15,7 @@ import colours from "../CSSColours";
 import renderingSettingsContext, {
   CanvasStatus,
 } from "../RenderingContext/RenderingContext";
-import { debounced } from "../util";
+import { debounced, INITIAL_RENDERING_SETTINGS } from "../util";
 import { MATERIAL_FILEPATHS } from "../FileLoader/Materials";
 import { ICONS } from "../FileLoader/Icons";
 import { RightNavSettings } from "../FileLoader/Datasets";
@@ -41,10 +41,10 @@ export default function RightNav({
     setTheme,
     canvasStatuses,
   } = useContext(renderingSettingsContext);
-  const [rotationSpeed, setRotationSpeed] = useState(1);
-  const [zAxisAngle, setZAxisAngle] = useState(55);
-  const [cameraRadius, setCameraRadius] = useState(40);
-  const [heightCap, setHeightCap] = useState(100);
+  const [rotationSpeed, setRotationSpeed] = useState(INITIAL_RENDERING_SETTINGS.ROTATION_SPEED);
+  const [zAxisAngle, setZAxisAngle] = useState(INITIAL_RENDERING_SETTINGS.Z_AXIS_ANGLE);
+  const [cameraRadius, setCameraRadius] = useState(INITIAL_RENDERING_SETTINGS.CAMERA_RADIUS);
+  const [heightCap, setHeightCap] = useState(INITIAL_RENDERING_SETTINGS.HEIGHT_CAP_PERCENT);
   const [currentColourPower, setCurrentColourPower] = useState(1);
   const loadedCount = Object.values(canvasStatuses).filter(
     (x) => x === CanvasStatus.Loaded
@@ -64,7 +64,7 @@ export default function RightNav({
     sendSetCameraRadius(newVal);
   };
   useEffect(() => {
-    changeCameraRadius(rightNavDefaultSettings.cameraRadius ?? 40);
+    changeCameraRadius(rightNavDefaultSettings.cameraRadius ?? INITIAL_RENDERING_SETTINGS.CAMERA_RADIUS);
   }, [rightNavDefaultSettings.cameraRadius]);
 
   const changeHeightCap = (newVal: number) => {

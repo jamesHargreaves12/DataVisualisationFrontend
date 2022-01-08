@@ -1,5 +1,5 @@
 {
-    "title": "Premiership",
+    "title": "Premiership Football stadiums",
     "src": "https://en.wikipedia.org/wiki/List_of_Premier_League_stadiums",
     "description": "The data being visualised here is the location of Premiership football stadiums. The height of each pixel represents the distance to the closest Premiership football stadium as the crow flies. The API was last scraped for updates on 31st May 2021.",
     "min": 0.03,

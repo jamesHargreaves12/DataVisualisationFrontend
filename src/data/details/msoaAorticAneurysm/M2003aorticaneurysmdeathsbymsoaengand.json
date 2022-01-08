@@ -1,9 +1,0 @@
-{
-    "idOverride": "2003-male",
-    "title": "2003 male",
-    "description": "Number of Aortic Aneurysms in Females in 2002 per 100,000 people. <a href=\"https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/adhocs/009651deathsfromaorticaneurysmbymiddlelayersuperoutputareamsoaengland2002to2017occurrences\"> Source Here </a>. <p>For more information, the source code that created this dataset is here <a href='https://github.com/jamesHargreaves12/DataVis_python'>https://github.com/jamesHargreaves12/DataVis_python</a>.</p>",
-    "datasetSpecificTags": {
-        "Gender": "male",
-        "Year": "2003"
-    }
-}
